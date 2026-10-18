@@ -8,7 +8,7 @@
 
 **PilotUITesting** управляет настоящим клиентом снаружи через UI Automation, как пользователь, и проверяет результат в базе через Server API. Библиотека не ссылается на Pilot SDK и использует только Server API.
 
-Версия 0.2.0, ранняя. Публичный API может измениться до 1.0.
+Версия 0.3.0, ранняя. Публичный API может измениться до 1.0.
 
 ## Зачем
 
@@ -66,7 +66,7 @@ UI-тесты проверялись вживую на Pilot-ICE Enterprise. Д�
 Тестовый проект ссылается на `PilotTestHost.Sdk` без копирования сборки в выходную папку: сборку SDK деплоит плагин-хост, обе стороны должны использовать один экземпляр.
 
 ```xml
-<PackageReference Include="PilotTestHost.Sdk" Version="0.2.0" ExcludeAssets="runtime" />
+<PackageReference Include="PilotTestHost.Sdk" Version="0.3.0" ExcludeAssets="runtime" />
 ```
 
 ```csharp

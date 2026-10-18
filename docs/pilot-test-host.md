@@ -51,7 +51,7 @@ Assert-библиотека - любая (исключения с `Assert`/`Xuni
 обе стороны должны использовать один экземпляр SDK-сборки (её деплоит хост). Через пакет NuGet:
 
 ```xml
-<PackageReference Include="PilotTestHost.Sdk" Version="0.2.0" ExcludeAssets="runtime" />
+<PackageReference Include="PilotTestHost.Sdk" Version="0.3.0" ExcludeAssets="runtime" />
 ```
 
 Пакет сам копирует тесты после сборки в Debug в `Tests\` плагина-хоста тех клиентов (Pilot-ICE Enterprise,
