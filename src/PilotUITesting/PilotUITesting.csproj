@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <UseWPF>false</UseWPF>
+    <RootNamespace>PilotUITesting</RootNamespace>
+    <AssemblyName>PilotUITesting</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>pilot;ascon;pilot-ice;pilot-bim;ui-automation;flaui;nunit;ui-testing</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Description>Библиотека для сквозных UI-тестов модулей Pilot-ICE / Pilot-BIM: запуск клиента, вход, открытие вкладок модулей, стандартные диалоги Pilot, тестовые данные через Server API.</Description>
+    <!-- CS1591: часть публичных членов без XML-комментариев -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\pilot-ui-testing.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="PilotUITesting.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FlaUI.Core" Version="5.0.0" />
+    <PackageReference Include="FlaUI.UIA3" Version="5.0.0" />
+    <PackageReference Include="Ascon.Pilot.Server.Api" Version="26.1.0" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+</Project>

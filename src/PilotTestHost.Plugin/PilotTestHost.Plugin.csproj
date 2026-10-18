@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<AssemblyName>PilotTestHost.ext2</AssemblyName>
+		<AssemblyProduct>PilotTestHost</AssemblyProduct>
+		<Product>PilotTestHost</Product>
+		<Description>Хост для тестов, выполняющихся внутри клиента Pilot</Description>
+		<RootNamespace>PilotTestHost.Plugin</RootNamespace>
+		<LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\bin\Debug\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ascon.Pilot.SDK" Version="26.15.0" />
+		<PackageReference Include="System.Composition" Version="10.0.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\PilotTestHost.Sdk\PilotTestHost.Sdk.csproj" />
+	</ItemGroup>
+
+	<!-- Деплой в Development-папки Pilot (как у обычных плагинов) -->
+	<PropertyGroup>
+		<AppData>$(USERPROFILE)\AppData\Local</AppData>
+		<UserDirectoryPathBIM>$(AppData)\ASCON\Pilot-BIM\Development\$(AssemblyProduct)</UserDirectoryPathBIM>
+		<UserDirectoryPathICE>$(AppData)\ASCON\Pilot-ICE Enterprise\Development\$(AssemblyProduct)</UserDirectoryPathICE>
+	</PropertyGroup>
+
+	<Target Name="CopyToDebugDirectory" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+		<MakeDir Directories="$(UserDirectoryPathBIM)" Condition="!Exists('$(UserDirectoryPathBIM)')" />
+		<ItemGroup>
+			<FilesToCopy Include="$(OutputPath)**\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(UserDirectoryPathBIM)" />
+
+		<MakeDir Directories="$(UserDirectoryPathICE)" Condition="!Exists('$(UserDirectoryPathICE)')" />
+		<Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(UserDirectoryPathICE)" />
+	</Target>
+
+</Project>

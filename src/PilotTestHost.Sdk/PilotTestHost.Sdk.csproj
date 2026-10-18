@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<IsPackable>true</IsPackable>
+		<PackageId>PilotTestHost.Sdk</PackageId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>pilot;ascon;pilot-ice;pilot-bim;tests;testing</PackageTags>
+		<!-- CS1591: часть публичных членов без XML-комментариев -->
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Description>Контракты и атрибуты для тестов, выполняющихся внутри клиента Pilot</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\docs\pilot-test-host.md" Pack="true" PackagePath="README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- PrivateAssets: SDK Pilot не должен утекать к потребителям пакета -->
+		<PackageReference Include="Ascon.Pilot.SDK" Version="26.15.0" PrivateAssets="all" />
+	</ItemGroup>
+
+</Project>

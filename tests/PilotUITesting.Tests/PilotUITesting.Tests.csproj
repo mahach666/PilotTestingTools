@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>PilotUITesting.Tests</RootNamespace>
+    <AssemblyName>PilotUITesting.Tests</AssemblyName>
+    <Description>Модульные тесты библиотеки PilotUITesting (без клиента Pilot) и контрактные тесты каталога на живом клиенте (Explicit).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PilotUITesting\PilotUITesting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- стенд для контрактных тестов каталога ([Explicit], Category=PilotContract) -->
+    <None Update="pilot-ui-tests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- снимок публичного API (0.1 и 0.2): из него ничего не должно пропадать (совместимость с существующими UI-тестами модулей) -->
+    <None Update="PublicApi.approved.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

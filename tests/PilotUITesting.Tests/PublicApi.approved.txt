@@ -1,0 +1,1551 @@
+PilotUITesting.Client.ClientConnection | enum
+PilotUITesting.Client.ClientConnection | enum Online = 0
+PilotUITesting.Client.ClientConnection | enum Connecting = 1
+PilotUITesting.Client.ClientConnection | enum NoSettings = 2
+PilotUITesting.Client.ClientConnection | enum Error = 3
+PilotUITesting.Client.ClientConnection | enum Offline = 4
+PilotUITesting.Client.ClientState | class
+PilotUITesting.Client.ClientState | property Connection : PilotUITesting.Client.ClientConnection { get; }
+PilotUITesting.Client.ClientState | property IsLoadingTabs : System.Boolean { get; }
+PilotUITesting.Client.ClientState | property UserCaption : System.String { get; }
+PilotUITesting.Client.ClientState | property LastCommand : System.String { get; }
+PilotUITesting.Client.MenuOpenMethod | enum
+PilotUITesting.Client.MenuOpenMethod | enum AppsKey = 0
+PilotUITesting.Client.MenuOpenMethod | enum RightClick = 1
+PilotUITesting.Client.MessageBoxAnswer | enum
+PilotUITesting.Client.MessageBoxAnswer | enum Yes = 0
+PilotUITesting.Client.MessageBoxAnswer | enum No = 1
+PilotUITesting.Client.MessageBoxAnswer | enum Cancel = 2
+PilotUITesting.Client.MessageBoxAnswer | enum Ok = 3
+PilotUITesting.Client.OrgUnitPick | enum
+PilotUITesting.Client.OrgUnitPick | enum MouseClick = 0
+PilotUITesting.Client.OrgUnitPick | enum DownEnter = 1
+PilotUITesting.Client.PilotApp | class
+PilotUITesting.Client.PilotApp | static method StartOrAttach(PilotUITesting.PilotUiConfig config) : PilotUITesting.Client.PilotApp
+PilotUITesting.Client.PilotApp | method TopLevelWindows() : FlaUI.Core.AutomationElements.AutomationElement[]
+PilotUITesting.Client.PilotApp | method WaitWindow(System.String title, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.Window
+PilotUITesting.Client.PilotApp | method WaitWindowContains(System.String titlePart, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.Window
+PilotUITesting.Client.PilotApp | method TryWindow(System.String title) : FlaUI.Core.AutomationElements.Window
+PilotUITesting.Client.PilotApp | method WaitWindowClosed(System.String title, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotApp | method Tabs() : FlaUI.Core.AutomationElements.AutomationElement[]
+PilotUITesting.Client.PilotApp | method TabTitle(FlaUI.Core.AutomationElements.AutomationElement tab) : System.String
+PilotUITesting.Client.PilotApp | method FindTab(System.String title) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotApp | method OpenModuleFromNewTab(System.String moduleButtonTitle, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotApp | method CloseTab(System.String title) : System.Boolean
+PilotUITesting.Client.PilotApp | method CloseTabsExcept(params System.String[] keepTitles) : System.Void
+PilotUITesting.Client.PilotApp | method CloseDialogs(params System.String[] cancelButtonIds) : System.Int32
+PilotUITesting.Client.PilotApp | method CloseClientErrorWindows() : System.Int32
+PilotUITesting.Client.PilotApp | method Screenshot(System.String name) : System.String
+PilotUITesting.Client.PilotApp | method DumpWindows(System.String name) : System.String
+PilotUITesting.Client.PilotApp | method Dispose() : System.Void
+PilotUITesting.Client.PilotApp | static method EnableDpiAwareness() : PilotUITesting.Uia.DpiStatus
+PilotUITesting.Client.PilotApp | method ShowObject(System.Guid objectId, System.Guid? annotationId = null, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotApp | method Quit(System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotApp | method Restart() : PilotUITesting.Client.PilotApp
+PilotUITesting.Client.PilotApp | method BringToFront() : System.Void
+PilotUITesting.Client.PilotApp | method SendKeys(System.String description, params FlaUI.Core.WindowsAPI.VirtualKeyShort[] keys) : System.Void
+PilotUITesting.Client.PilotApp | property Config : PilotUITesting.PilotUiConfig { get; }
+PilotUITesting.Client.PilotApp | property Automation : FlaUI.Core.AutomationBase { get; }
+PilotUITesting.Client.PilotApp | property Process : System.Diagnostics.Process { get; }
+PilotUITesting.Client.PilotApp | property MainWindow : FlaUI.Core.AutomationElements.Window { get; }
+PilotUITesting.Client.PilotApp | property IsConnected : System.Boolean { get; }
+PilotUITesting.Client.PilotApp | property CurrentUserCaption : System.String { get; }
+PilotUITesting.Client.PilotApp | property TabStrip : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotApp | property TabContent : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotApp | property Windows : PilotUITesting.Client.PilotWindows { get; }
+PilotUITesting.Client.PilotApp | property TabBar : PilotUITesting.Client.PilotTabBar { get; }
+PilotUITesting.Client.PilotApp | property MainMenu : PilotUITesting.Client.PilotMenu { get; }
+PilotUITesting.Client.PilotApp | static property Dpi : PilotUITesting.Uia.DpiStatus { get; }
+PilotUITesting.Client.PilotApp | property ProcessId : System.Int32 { get; }
+PilotUITesting.Client.PilotApp | property State : PilotUITesting.Client.ClientState { get; }
+PilotUITesting.Client.PilotApp | property ModuleViewOpened : System.Boolean { get; }
+PilotUITesting.Client.PilotApp | const field MainWindowId : System.String = "mainPilotView"
+PilotUITesting.Client.PilotApp | const field TabHostId : System.String = "tabHostView"
+PilotUITesting.Client.PilotApp | const field AddTabButtonId : System.String = "AddTabButton"
+PilotUITesting.Client.PilotApp | const field TabItemId : System.String = "AUIDTabItemLayoutDocument"
+PilotUITesting.Client.PilotApp | const field TabTitleId : System.String = "DocumentTitleTextBlock"
+PilotUITesting.Client.PilotApp | const field TabCloseButtonId : System.String = "DocumentCloseButton"
+PilotUITesting.Client.PilotApp | const field UserProfileButtonId : System.String = "AUIDCurrentUserProfile"
+PilotUITesting.Client.PilotApp | const field NewTabTitle : System.String = "Новая вкладка"
+PilotUITesting.Client.PilotCard | class
+PilotUITesting.Client.PilotCard | method AttributeNames() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotCard | method ObligatoryAttributes() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotCard | method Caption(System.String attribute) : System.String
+PilotUITesting.Client.PilotCard | method Has(System.String attribute) : System.Boolean
+PilotUITesting.Client.PilotCard | method Field(System.String attribute, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotCard | method Value(System.String attribute) : System.String
+PilotUITesting.Client.PilotCard | method Set(System.String attribute, System.String value) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method Choose(System.String attribute, System.String itemCaption) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method SetDate(System.String attribute, System.DateTime value) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method OpenReferenceBook(System.String attribute) : PilotUITesting.Client.PilotReferenceBook
+PilotUITesting.Client.PilotCard | method PickReference(System.String attribute, System.String itemTitle) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method PickReferenceByPath(System.String attribute, params System.String[] path) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method AddOrgUnit(System.String stage, System.String searchText, System.String expectedName, PilotUITesting.Client.OrgUnitPick pick = MouseClick) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotCard | method OrgUnits(System.String stage) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotCard | method Describe() : System.String
+PilotUITesting.Client.PilotCard | method ToString() : System.String
+PilotUITesting.Client.PilotCommonSettingsWindow | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotCommonSettingsWindow | static method AddItemId(System.String featureKey) : System.String
+PilotUITesting.Client.PilotCommonSettingsWindow | static method Open(PilotUITesting.Client.PilotApp app, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotCommonSettingsWindow
+PilotUITesting.Client.PilotCommonSettingsWindow | static method Wait(PilotUITesting.Client.PilotApp app, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotCommonSettingsWindow
+PilotUITesting.Client.PilotCommonSettingsWindow | static method TryFind(PilotUITesting.Client.PilotApp app) : PilotUITesting.Client.PilotCommonSettingsWindow
+PilotUITesting.Client.PilotCommonSettingsWindow | method Groups() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotCommonSettingsWindow | method Rows() : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Client.PilotCommonSettingsWindow | method TryFindRow(System.String textPart) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotCommonSettingsWindow | method EditRow(FlaUI.Core.AutomationElements.AutomationElement row, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotNewSettingsItemWindow
+PilotUITesting.Client.PilotCommonSettingsWindow | method RemoveRow(System.String textPart, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotCommonSettingsWindow | method OpenAddMenu() : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotCommonSettingsWindow | method AddConfiguration(System.String featureKey, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotNewSettingsItemWindow
+PilotUITesting.Client.PilotCommonSettingsWindow | method CloseWithButton() : System.Void
+PilotUITesting.Client.PilotCommonSettingsWindow | const field WindowId : System.String = "Client.CommonSettings.Window"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field AddButtonId : System.String = "tbiAddSetting"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field AddMenuId : System.String = "tbiAddSettingContextMenu"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field GridId : System.String = "settingsDataGrid"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field CloseButtonId : System.String = "btnClose"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field RowMenuId : System.String = "AUIDSettingsItemMenu"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field EditItemId : System.String = "miEdit"
+PilotUITesting.Client.PilotCommonSettingsWindow | const field RemoveItemId : System.String = "miRemove"
+PilotUITesting.Client.PilotDialog | class : PilotUITesting.Client.PilotPage
+PilotUITesting.Client.PilotDialog | ctor(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement window)
+PilotUITesting.Client.PilotDialog | protected ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.PilotDialog | protected method ResolveRoot() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotDialog | method WaitClosed(System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotDialog | method Close() : System.Void
+PilotUITesting.Client.PilotDialog | method ClickAndWaitClosed(System.String automationId) : System.Void
+PilotUITesting.Client.PilotDialog | method ClickTextAndWaitClosed(System.String caption) : System.Void
+PilotUITesting.Client.PilotDialog | property Window : FlaUI.Core.AutomationElements.Window { get; }
+PilotUITesting.Client.PilotDialog | property Title : System.String { get; }
+PilotUITesting.Client.PilotDialog | property Id : System.String { get; }
+PilotUITesting.Client.PilotDialog | property ClassName : System.String { get; }
+PilotUITesting.Client.PilotDialog | property Handle : System.IntPtr { get; }
+PilotUITesting.Client.PilotDialog | property IsOpen : System.Boolean { get; }
+PilotUITesting.Client.PilotErrorWindow | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotErrorWindow | ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.PilotErrorWindow | method Close() : System.Void
+PilotUITesting.Client.PilotErrorWindow | property IsUnexpected : System.Boolean { get; }
+PilotUITesting.Client.PilotErrorWindow | property Message : System.String { get; }
+PilotUITesting.Client.PilotExplorer | class : PilotUITesting.Client.PilotTabPage
+PilotUITesting.Client.PilotExplorer | static method Open(PilotUITesting.Client.PilotApp app) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | static method Attach(PilotUITesting.Client.PilotTab tab) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method Location() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotExplorer | method GoHome() : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method GoTo(PilotUITesting.Data.ObjectRef target) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method GoTo(System.Guid objectId, System.String expectedTitle) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method GoToPath(params System.String[] titles) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method OpenRow(System.String title) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method Back() : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method Select(System.String title) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method SelectMany(params System.String[] titles) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method SelectAll() : PilotUITesting.Client.PilotExplorer
+PilotUITesting.Client.PilotExplorer | method ContextMenu(PilotUITesting.Client.MenuOpenMethod method = AppsKey) : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotExplorer | method CreateObject(System.String typeName) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotExplorer | method OpenProperties() : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotExplorer | method DeleteSelected() : System.Void
+PilotUITesting.Client.PilotExplorer | property Toolbar : PilotUITesting.Client.PilotToolbar { get; }
+PilotUITesting.Client.PilotExplorer | property List : PilotUITesting.Client.PilotList { get; }
+PilotUITesting.Client.PilotExplorer | property Tree : PilotUITesting.Client.PilotList { get; }
+PilotUITesting.Client.PilotIds | static class
+PilotUITesting.Client.PilotIds | static method XamlName(System.String s) : System.String
+PilotUITesting.Client.PilotIds+Card | static class
+PilotUITesting.Client.PilotIds+Card | static method Field(System.String attributeName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method Caption(System.String attributeName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method DateContainer(System.String attributeName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method NumeratorCombo(System.String attributeName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method NumeratorEditButton(System.String attributeName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method OrgUnitInput(System.String stageName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method OrgUnitPlaceholder(System.String stageName) : System.String
+PilotUITesting.Client.PilotIds+Card | static method OrgUnitItem(System.String personName, System.Int32 index, System.String stageName) : System.String
+PilotUITesting.Client.PilotIds+Card | static readonly field CaptionPrefix : System.String
+PilotUITesting.Client.PilotIds+Card | static readonly field OrgUnitItemPrefix : System.String
+PilotUITesting.Client.PilotIds+Card | const field Container : System.String = "AUIDCreateObject"
+PilotUITesting.Client.PilotIds+Card | const field ObjectCard : System.String = "ascObjectCard"
+PilotUITesting.Client.PilotIds+Card | const field Create : System.String = "btnCreate"
+PilotUITesting.Client.PilotIds+Card | const field CreateAsSecret : System.String = "btnCreateAsSecret"
+PilotUITesting.Client.PilotIds+Card | const field Save : System.String = "btnSave"
+PilotUITesting.Client.PilotIds+Card | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Card | const field ReplaceReason : System.String = "reasonInput"
+PilotUITesting.Client.PilotIds+Card | const field OpenAfterCreate : System.String = "OpenAfterCreateChbx"
+PilotUITesting.Client.PilotIds+Card | const field Toolbar : System.String = "objectListViewerToolbar"
+PilotUITesting.Client.PilotIds+Card | const field OpenFile : System.String = "tbiOpenFile"
+PilotUITesting.Client.PilotIds+Card | const field PreviewSplitter : System.String = "objectCardDocPreviewSplitter"
+PilotUITesting.Client.PilotIds+Card | const field DocumentFilesTab : System.String = "AUIDdocumentFilesView"
+PilotUITesting.Client.PilotIds+Card | const field ObjectCardView : System.String = "ObjectCardView"
+PilotUITesting.Client.PilotIds+Card | const field ScrollViewer : System.String = "PART_ScrollViewer"
+PilotUITesting.Client.PilotIds+Card | const field AttributesGroup : System.String = "attributesGroup"
+PilotUITesting.Client.PilotIds+Card | const field CaptionText : System.String = "attributeCaptionTxb"
+PilotUITesting.Client.PilotIds+Card | const field CaptionTitle : System.String = "textTxb"
+PilotUITesting.Client.PilotIds+Card | const field DateTextBox : System.String = "PART_TextBox"
+PilotUITesting.Client.PilotIds+Card | const field ObligatoryMark : System.String = "obligatoryTxb"
+PilotUITesting.Client.PilotIds+Card | const field FieldRightButton : System.String = "PART_Right_Button"
+PilotUITesting.Client.PilotIds+Card | const field FieldLeftButton : System.String = "PART_Left_Button"
+PilotUITesting.Client.PilotIds+Card | const field CalendarToggle : System.String = "_calendarToggleButton"
+PilotUITesting.Client.PilotIds+Card | const field BoolCheckBox : System.String = "AUIDBoolAttrCheckbox"
+PilotUITesting.Client.PilotIds+Card | const field RefBookItem : System.String = "AUIDRefBookItem"
+PilotUITesting.Client.PilotIds+Card | const field NumeratorDropDown : System.String = "toggleButton"
+PilotUITesting.Client.PilotIds+Card | const field NumeratorText : System.String = "txbConfiguration"
+PilotUITesting.Client.PilotIds+Card | const field TimeHours : System.String = "AUIDTimePickerHours"
+PilotUITesting.Client.PilotIds+Card | const field TimeMinutes : System.String = "AUIDTimePickerMinutes"
+PilotUITesting.Client.PilotIds+Card | const field GroupToggle : System.String = "groupToggleButton"
+PilotUITesting.Client.PilotIds+Card | const field GroupExpander : System.String = "groupExpander"
+PilotUITesting.Client.PilotIds+Card | const field OrgUnitPresenter : System.String = "orgUnitPresenter"
+PilotUITesting.Client.PilotIds+Card | const field OrgUnitRemove : System.String = "removeOrgUnitItemButton"
+PilotUITesting.Client.PilotIds+Card | const field AutocompletePopup : System.String = "PART_AutocompletePopup"
+PilotUITesting.Client.PilotIds+Card | const field AutocompleteList : System.String = "autocompleteList"
+PilotUITesting.Client.PilotIds+Card | const field CreatedBy : System.String = "createdByTxb"
+PilotUITesting.Client.PilotIds+Card | const field ModifiedBy : System.String = "modifiedByTxb"
+PilotUITesting.Client.PilotIds+Card+Attachments | static class
+PilotUITesting.Client.PilotIds+Card+Attachments | const field Container : System.String = "AUIDAttachmentsMenu"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field AddObjectAttachments : System.String = "miAddObjectAttachments"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field AddFileAttachments : System.String = "miAddFileAttachments"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field AddFolderAttachments : System.String = "miAddFolderAttachments"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field SaveAsAttachment : System.String = "miSaveAsAttachment"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field CopyAttachmentLink : System.String = "miCopyAttachmentLink"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field OpenAttachment : System.String = "miOpenAttachment"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field CopyAttachment : System.String = "miCopyAttachment"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field ShowProperties : System.String = "miShowProperties"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field ShowSharingSettings : System.String = "miShowSharingSettings"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field BatchPrintingSelectedElements : System.String = "miBatchPrintingSelectedElemets"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field ActualizeAttachment : System.String = "miActualizeAttachment"
+PilotUITesting.Client.PilotIds+Card+Attachments | const field RemoveAttachments : System.String = "miRemoveAttachments"
+PilotUITesting.Client.PilotIds+Card+DocumentTemplateSelector | static class
+PilotUITesting.Client.PilotIds+Card+DocumentTemplateSelector | const field Skip : System.String = "btnSkip"
+PilotUITesting.Client.PilotIds+Card+DocumentTemplateSelector | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | static class
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | const field ListViewer : System.String = "objectListViewer"
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | const field List : System.String = "objectListViewer.ListView"
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | const field InfoMessage : System.String = "AUIDInfoMessage"
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | const field Ok : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+Card+ObjectSelector | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | static class
+PilotUITesting.Client.PilotIds+Card+OrgStructure | static method SelectAllChildrenButton(System.String title) : System.String
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field TreeControl : System.String = "treeViewControl"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field Tree : System.String = "ascTreeView"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field Add : System.String = "btnAdd"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field EmptySelectionHint : System.String = "AUIDEmptySelectionHint"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field SelectedPositions : System.String = "AUIDSelectedPositions"
+PilotUITesting.Client.PilotIds+Card+OrgStructure | const field InfoMessage : System.String = "AUIDInfoMessage"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | static class
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field Search : System.String = "searchEdit"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field SearchButton : System.String = "PART_Right_Button"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field TreeControl : System.String = "treeViewControl"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field Tree : System.String = "ascTreeView"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field Expander : System.String = "expander"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field CheckBox : System.String = "checkBox"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field ItemTitle : System.String = "titleTextBlock"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field Ok : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+Card+ReferenceBook | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+DialogWindow | static class
+PilotUITesting.Client.PilotIds+DialogWindow | const field Minimize : System.String = "btnMinimize"
+PilotUITesting.Client.PilotIds+DialogWindow | const field Restore : System.String = "btnRestore"
+PilotUITesting.Client.PilotIds+DialogWindow | const field Close : System.String = "btnClose"
+PilotUITesting.Client.PilotIds+ErrorWindow | static class
+PilotUITesting.Client.PilotIds+ErrorWindow | static method WindowId(System.Boolean unexpected) : System.String
+PilotUITesting.Client.PilotIds+ErrorWindow | static readonly field WindowIdPrefix : System.String
+PilotUITesting.Client.PilotIds+ErrorWindow | const field Message : System.String = "exceptionMessageText"
+PilotUITesting.Client.PilotIds+ErrorWindow | const field OpenLogFolder : System.String = "lnkLicence"
+PilotUITesting.Client.PilotIds+ErrorWindow | const field Details : System.String = "additionalInfoExpander"
+PilotUITesting.Client.PilotIds+ErrorWindow | const field Copy : System.String = "copyButton"
+PilotUITesting.Client.PilotIds+ErrorWindow | const field Close : System.String = "closeButton"
+PilotUITesting.Client.PilotIds+Explorer | static class
+PilotUITesting.Client.PilotIds+Explorer | static method CreateItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method AttachToItem(System.String taskOrWorkflowTypeName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method TemplateMenuItem(System.String templateName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method TemplateToolbarItem(System.String templateName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method TemplateFolderMenuItem(System.String folderName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method TemplateFolderToolbarItem(System.String folderName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method BuildReportMenuItem(System.String reportName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method BuildReportToolbarItem(System.String reportName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method FilterItem(System.String filterCaption) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method AssignStateToVersionItem(System.String stateTitle) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method SortToolbarButton(System.Boolean descending) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method SortMenuItem(System.Boolean descending) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method VersionItem(System.Int32 index) : System.String
+PilotUITesting.Client.PilotIds+Explorer | static method ListViewOf(System.String objectListViewerName) : System.String
+PilotUITesting.Client.PilotIds+Explorer | const field Container : System.String = "AUIDDocumentsExplorer"
+PilotUITesting.Client.PilotIds+Explorer | const field ListViewer : System.String = "ascListView"
+PilotUITesting.Client.PilotIds+Explorer | const field TreeSplitter : System.String = "AUIDTreeViewSplitter"
+PilotUITesting.Client.PilotIds+Explorer | const field ObjectCard : System.String = "ObjectCardView"
+PilotUITesting.Client.PilotIds+Explorer | const field Preview : System.String = "documentPreview"
+PilotUITesting.Client.PilotIds+Explorer | const field BottomTabs : System.String = "filesAndTasksTabControl"
+PilotUITesting.Client.PilotIds+Explorer | const field BottomTabsSplitter : System.String = "filesAndTasksTabControlSplitter"
+PilotUITesting.Client.PilotIds+Explorer | const field Splitter : System.String = "documentExplorerSplitter"
+PilotUITesting.Client.PilotIds+Explorer | const field ShowHideNavigation : System.String = "showHideButton"
+PilotUITesting.Client.PilotIds+Explorer+FavoritesMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+FavoritesMenu | const field Container : System.String = "AUIDListViewContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+FavoritesMenu | const field DeleteFromFavorites : System.String = "mniDeleteFromFavorites"
+PilotUITesting.Client.PilotIds+Explorer+Files | static class
+PilotUITesting.Client.PilotIds+Explorer+Files | const field Container : System.String = "AUIDdocumentFilesView"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field Grid : System.String = "documentFilesDataGrid"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field TitleCell : System.String = "AUIDTitleCell"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field FileStateIcon : System.String = "fileStateIcon"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field ModifiedCell : System.String = "AUIDModifiedCell"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field FileSizeCell : System.String = "AUIDFileSizeCell"
+PilotUITesting.Client.PilotIds+Explorer+Files | const field PublishedDateCell : System.String = "AUIDPublishedDateCell"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | static class
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field Container : System.String = "documentFilesViewToolbar"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field Publish : System.String = "tbiPublish"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field PublishMoreButton : System.String = "tbiPublishMoreButton"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field PublishWithReason : System.String = "tbiPublishWithReason"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field AppendPublish : System.String = "tbiAppendPublish"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field AddSourceFile : System.String = "tbiAddSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field RemoveSourceFile : System.String = "tbiRemoveSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field ShowOnDisk : System.String = "tbiShowOnDisk"
+PilotUITesting.Client.PilotIds+Explorer+Files+Toolbar | const field UpdateFileAttributes : System.String = "tbiUpdateFileAttributes"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Container : System.String = "AUIDDocumentFilesContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field PasteFileCommand : System.String = "miPasteFileCommand"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field OpenSourceFile : System.String = "miOpenSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field OpenWith : System.String = "miOpenWith"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Application : System.String = "miApplication"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field ChooseProgram : System.String = "miChooseProgram"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field CopyFileCommand : System.String = "miCopyFileCommand"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field CutFileCommand : System.String = "miCutFileCommand"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field State : System.String = "miState"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Unlock : System.String = "miUnlock"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field GetLatestVersion : System.String = "miGetLatestVersion"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Commit : System.String = "miCommit"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field PublishAndCommit : System.String = "miPublishAndCommit"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field AppendPublishAndCommit : System.String = "miAppendPublishAndCommit"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Discard : System.String = "miDiscard"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Revert : System.String = "miRevert"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Download : System.String = "miDownload"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field ShareSettings : System.String = "miShareSettings"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field ShowHistory : System.String = "miShowHistory"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Subscribe : System.String = "miSubscribe"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field UnSubscribe : System.String = "miUnSubscribe"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field ShowChatDialog : System.String = "miShowChatDialog"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field ShowPropertiesDialog : System.String = "miShowPropertiesDialog"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field CopyLink : System.String = "miCopyLink"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Freeze : System.String = "miFreeze"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Unfreeze : System.String = "miUnfreeze"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field Lock : System.String = "miLock"
+PilotUITesting.Client.PilotIds+Explorer+FilesMenu | const field RemoveSourceFile : System.String = "miRemoveSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks | static class
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks | const field Host : System.String = "linkedTasksTab"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks | const field List : System.String = "AUIDTaskTreeView"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Menu | static class
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Menu | const field Container : System.String = "AUIDLinkedTaskListContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Menu | const field NavigateToTask : System.String = "miNavigateToTask"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | static class
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | const field Container : System.String = "taskViewerToolbar"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | const field CreateTask : System.String = "miCreateTask"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | const field CreateWorkflow : System.String = "miCreateWorkflow"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | const field TasksDisplayOptions : System.String = "tbiTasksDisplayOptions"
+PilotUITesting.Client.PilotIds+Explorer+LinkedTasks+Toolbar | const field ShowRevoked : System.String = "tbiShowRevoked"
+PilotUITesting.Client.PilotIds+Explorer+Links | static class
+PilotUITesting.Client.PilotIds+Explorer+Links | const field List : System.String = "attachmentsItemControl"
+PilotUITesting.Client.PilotIds+Explorer+Links+Menu | static class
+PilotUITesting.Client.PilotIds+Explorer+Links+Menu | const field Container : System.String = "AUIDAttachmentsMenu"
+PilotUITesting.Client.PilotIds+Explorer+Links+Menu | const field InsertObjectAttachments : System.String = "miInsertObjectAttachments"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | static class
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field Container : System.String = "objectLinksToolbar"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field Add : System.String = "tbiAdd"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field AddObject : System.String = "tbiAddObject"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field AddFile : System.String = "tbiAddFile"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field AddFolder : System.String = "tbiAddFolder"
+PilotUITesting.Client.PilotIds+Explorer+Links+Toolbar | const field RemoveAttachments : System.String = "tbiRemoveAttachments"
+PilotUITesting.Client.PilotIds+Explorer+List | static class
+PilotUITesting.Client.PilotIds+Explorer+List | const field Container : System.String = "objectsList"
+PilotUITesting.Client.PilotIds+Explorer+List | const field View : System.String = "ascListView.ListView"
+PilotUITesting.Client.PilotIds+Explorer+List | const field InfoPanel : System.String = "infoPanel"
+PilotUITesting.Client.PilotIds+Explorer+List | const field InfoText : System.String = "AUIDEmptyListViewText"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | static method CompareWithHistory(System.Int32 index) : System.String
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Container : System.String = "AUIDListViewContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Create : System.String = "miCreate"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Register : System.String = "miRegister"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ShowMountedFiles : System.String = "miShowMountedFiles"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field LinkToSource : System.String = "miLinkToSource"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field UpdateLinkToSource : System.String = "miUpdateLinkToSource"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field AddSourceFile : System.String = "miAddSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field AddSourceDirectory : System.String = "miAddSourceDirectory"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ShowSourceFile : System.String = "miShowSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field AttachToSimpleTask : System.String = "miAttachToSimpleTask"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Templates : System.String = "miTemplates"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field AttachToWorkflow : System.String = "miAttachToWorkflow"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field BuildReportMenu : System.String = "miBuildReportMenu"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field DiscardSent : System.String = "miDiscardSent"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ShowSharingSettings : System.String = "miShowSharingSettings"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field SubscribeToChanges : System.String = "miSubscribeToChanges"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field UnsubscribeToChanges : System.String = "miUnsubscribeToChanges"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field AddToFavorites : System.String = "miAddToFavorites"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field BatchPrintingSelectedElements : System.String = "miBatchPrintingSelectedElemets"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field OverlaySensitivity : System.String = "miOverlaySensitivity"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ToleranceSoft : System.String = "miToleranceSoft"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ToleranceMedium : System.String = "miToleranceMedium"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ToleranceStrict : System.String = "miToleranceStrict"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field DisableComparisonMode : System.String = "miDisableComparisionMode"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field CompareWith : System.String = "miCompareWith"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field CompareMode : System.String = "miCompareMode"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ChooseDocumentForCompare : System.String = "miChooseDocumentForCompare"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field PreviousVersions : System.String = "miPreviousVersions"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field More : System.String = "miMore"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field UpdateBarcodeLabels : System.String = "miUpdateBarcodeLabels"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Export : System.String = "miExport"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Send : System.String = "miSend"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ToDisk : System.String = "miToDisk"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ByEmail : System.String = "miByEmail"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ToDiskAsImage : System.String = "miToDiskAsImage"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field OpenWith : System.String = "miOpenWith"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Application : System.String = "miApplication"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ChooseProgram : System.String = "miChooseProgram"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field SendToXpsMerger : System.String = "miSendToXpsMerger"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Freeze : System.String = "miFreeze"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Unfreeze : System.String = "miUnfreeze"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field CopyId : System.String = "miCopyId"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Cut : System.String = "miCut"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Copy : System.String = "miCopy"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field CopyFilePath : System.String = "miCopyFilePath"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Paste : System.String = "miPaste"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field PasteAsShortcut : System.String = "miPasteAsShortcut"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Delete : System.String = "miDelete"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field Navigate : System.String = "miNavigate"
+PilotUITesting.Client.PilotIds+Explorer+ListMenu | const field ShowProperties : System.String = "miShowProperties"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | static class
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field Bar : System.String = "AUIDNavBar"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field Back : System.String = "btnBack"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field Next : System.String = "btnNext"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field History : System.String = "btnSearchHistory"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field Home : System.String = "btnHome"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field Item : System.String = "navigationItemButton"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field ShowChildItems : System.String = "showChildItemsButton"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field ShowHiddenItems : System.String = "showHiddenItemsButton"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field HiddenItem : System.String = "hiddentNavigationPopupItem"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field HistoryItem : System.String = "searchHistoryPopupItem"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field ItemsMenu : System.String = "AUIDNavigationItemsContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field HiddenItemsMenu : System.String = "AUIDNavigationHiddenItemsContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field PopupItemsMenu : System.String = "AUIDNavigationPopupItemsContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field ShowPathAsString : System.String = "showPathAsStringButton"
+PilotUITesting.Client.PilotIds+Explorer+Navigation | const field PathEdit : System.String = "directoryEdit"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field Container : System.String = "AUIDListViewContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field DiscardSent : System.String = "miDiscardSent"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field RestoreToOriginalLocation : System.String = "miRestoreToOriginalLocation"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field Cut : System.String = "miCut"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field Delete : System.String = "miDelete"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field ShowSharingSettings : System.String = "miShowSharingSettings"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinMenu | const field ShowProperties : System.String = "miShowProperties"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | static class
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field Container : System.String = "objectListViewerToolbar"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field RestoreToOriginalLocation : System.String = "miRestoreToOriginalLocation"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field Cut : System.String = "miCut"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field Delete : System.String = "miDelete"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field SharingSettings : System.String = "miSharingSettings"
+PilotUITesting.Client.PilotIds+Explorer+RecycleBinToolbar | const field ShowProperties : System.String = "miShowProperties"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field Container : System.String = "AUIDListViewContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field Create : System.String = "miCreate"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field DiscardSent : System.String = "miDiscardSent"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field ShowSharingSettings : System.String = "miShowSharingSettings"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field CopyId : System.String = "miCopyId"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field Paste : System.String = "miPaste"
+PilotUITesting.Client.PilotIds+Explorer+RootMenu | const field PasteAsShortcut : System.String = "miPasteAsShortcut"
+PilotUITesting.Client.PilotIds+Explorer+Row | static class
+PilotUITesting.Client.PilotIds+Explorer+Row | const field Icon : System.String = "nodeIcon"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field Title : System.String = "titleTextBlock"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field Type : System.String = "itemTypeTextBlock"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field VersionCreated : System.String = "tbVersionCreated"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field State : System.String = "commandPopupLink"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field StateText : System.String = "userObjectPopupLinkText"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field FallInto : System.String = "fallIntoButton"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field Versions : System.String = "versionButton"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field Subscribed : System.String = "AUIDSubscribed"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field SigningIndicator : System.String = "AUIDSigningProcessIndicator"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field VersionRadio : System.String = "versionRadioButton"
+PilotUITesting.Client.PilotIds+Explorer+Row | const field MakeActual : System.String = "makeActualButton"
+PilotUITesting.Client.PilotIds+Explorer+Search | static class
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Show : System.String = "showSearchButton"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Hide : System.String = "hideSearchButton"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Edit : System.String = "searchEdit"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Clear : System.String = "clearButton"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Go : System.String = "searchButton"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field Hint : System.String = "PART_HintMessage"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field AutocompletePopup : System.String = "PART_AutocompletePopup"
+PilotUITesting.Client.PilotIds+Explorer+Search | const field AutocompleteList : System.String = "autocompleteList"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | static class
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | static method ApplicationItem(System.String applicationName) : System.String
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | static method CompareWithHistory(System.Int32 index) : System.String
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Container : System.String = "objectListViewerToolbar"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Import : System.String = "miImport"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Create : System.String = "miCreate"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ShowMountedFiles : System.String = "miShowMountedFiles"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field DocumentExplorerFilter : System.String = "tbiDocumentExplorerFilter"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Paste : System.String = "miPaste"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field PasteShortcut : System.String = "miPasteShortcut"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ShowProperties : System.String = "miShowProperties"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Register : System.String = "miRegister"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ShowSourceFile : System.String = "miShowSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field LinkToSource : System.String = "miLinkToSource"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field UpdateLinkToSource : System.String = "miUpdateLinkToSource"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AddSourceFile : System.String = "miAddSourceFile"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AddSourceDirectory : System.String = "miAddSourceDirectory"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AttachToTask : System.String = "miAttachToTask"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AttachToWorkflow : System.String = "miAttachToWorkflow"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Templates : System.String = "tbiTemplates"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field BuildReportMenu : System.String = "tbiBuildReportMenu"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field SharingSettings : System.String = "miSharingSettings"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field SubscribeToChanges : System.String = "miSubscribeToChanges"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field UnsubscribeToChanges : System.String = "miUnsubscribeToChanges"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AddToFavorites : System.String = "miAddToFavorites"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field BatchPrintingSelectedElements : System.String = "miBatchPrintingSelectedElemets"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Send : System.String = "miSend"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ToDisk : System.String = "miToDisk"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ByEmail : System.String = "miByEmail"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ToDiskAsImage : System.String = "miToDiskAsImage"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field OpenWith : System.String = "miOpenWith"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ChooseProgram : System.String = "miChooseProgram"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field CompareWith : System.String = "miCompareWith"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field ChooseDocumentForCompare : System.String = "miChooseDocumentForCompare"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field PreviousVersions : System.String = "miPreviousVersions"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field UpdateBarcodeLabels : System.String = "miUpdateBarcodeLabels"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Export : System.String = "miExport"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Freeze : System.String = "miFreeze"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Unfreeze : System.String = "miUnfreeze"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field AssignStateToVersion : System.String = "tbiAssignStateToVersion"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Copy : System.String = "miCopy"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Cut : System.String = "miCut"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Delete : System.String = "miDelete"
+PilotUITesting.Client.PilotIds+Explorer+Toolbar | const field Empty : System.String = "empty"
+PilotUITesting.Client.PilotIds+Explorer+Tree | static class
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Container : System.String = "treeView"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Control : System.String = "treeViewControl"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field List : System.String = "ascTreeView"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Filter : System.String = "filterEdit"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Expander : System.String = "expander"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field CheckBox : System.String = "checkBox"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field TypeIcon : System.String = "typeIcon"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Title : System.String = "titleTextBlock"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field SecretMark : System.String = "secretMark"
+PilotUITesting.Client.PilotIds+Explorer+Tree | const field Subscribed : System.String = "AUIDSubscribed"
+PilotUITesting.Client.PilotIds+Explorer+TreeMenu | static class
+PilotUITesting.Client.PilotIds+Explorer+TreeMenu | const field Container : System.String = "AUIDTreeContextMenu"
+PilotUITesting.Client.PilotIds+Explorer+TreeMenu | const field ExpandToOpenFolder : System.String = "miExpandToOpenFolder"
+PilotUITesting.Client.PilotIds+Explorer+TreeMenu | const field DeleteFromFavorites : System.String = "mniDeleteFromFavorites"
+PilotUITesting.Client.PilotIds+MainMenu | static class
+PilotUITesting.Client.PilotIds+MainMenu | const field Container : System.String = "mainMenu"
+PilotUITesting.Client.PilotIds+MainMenu | const field Service : System.String = "mniService"
+PilotUITesting.Client.PilotIds+MainMenu | const field AccountSettings : System.String = "mniConnSettings"
+PilotUITesting.Client.PilotIds+MainMenu | const field Options : System.String = "mniOptions"
+PilotUITesting.Client.PilotIds+MainMenu | const field ClientOptions : System.String = "mniClientOptions"
+PilotUITesting.Client.PilotIds+MainMenu | const field CommonSettings : System.String = "mniCommonSettings"
+PilotUITesting.Client.PilotIds+MainMenu | const field Extensions : System.String = "mniExtensions"
+PilotUITesting.Client.PilotIds+MainMenu | const field DocumentTemplatesManager : System.String = "mniDocumentTemplatesManager"
+PilotUITesting.Client.PilotIds+MainMenu | const field CacheManagement : System.String = "mniCacheManagement"
+PilotUITesting.Client.PilotIds+MainMenu | const field Help : System.String = "mniHelp"
+PilotUITesting.Client.PilotIds+MainMenu | const field About : System.String = "mniAbout"
+PilotUITesting.Client.PilotIds+MainMenu | const field Exit : System.String = "mniExit"
+PilotUITesting.Client.PilotIds+MainWindow | static class
+PilotUITesting.Client.PilotIds+MainWindow | const field Container : System.String = "mainPilotView"
+PilotUITesting.Client.PilotIds+MainWindow | const field Icon : System.String = "PART_Icon"
+PilotUITesting.Client.PilotIds+MainWindow | const field MainMenu : System.String = "mainMenu"
+PilotUITesting.Client.PilotIds+MainWindow | const field UserProfile : System.String = "AUIDCurrentUserProfile"
+PilotUITesting.Client.PilotIds+MainWindow | const field ConnectionState : System.String = "AUIDConnectionState"
+PilotUITesting.Client.PilotIds+MainWindow | const field TabHost : System.String = "tabHostView"
+PilotUITesting.Client.PilotIds+MainWindow | const field UpdatePanel : System.String = "AUIDUpdatePanel"
+PilotUITesting.Client.PilotIds+MainWindow | const field NotificationWindow : System.String = "notificationWindow"
+PilotUITesting.Client.PilotIds+MainWindow | const field Minimize : System.String = "btnMinimize"
+PilotUITesting.Client.PilotIds+MainWindow | const field Maximize : System.String = "btnMaximize"
+PilotUITesting.Client.PilotIds+MainWindow | const field RestoreDown : System.String = "btnRestoreDown"
+PilotUITesting.Client.PilotIds+MainWindow | const field CloseClientButton : System.String = "btnClose"
+PilotUITesting.Client.PilotIds+MainWindow | const field ShowTestUnexpectedWindow : System.String = "showTestUnexpectedWindow"
+PilotUITesting.Client.PilotIds+MainWindow | const field ShowTestErrorWindow : System.String = "showTestErrorWindow"
+PilotUITesting.Client.PilotIds+MainWindow | const field ShowTestServerErrorWindow : System.String = "showTestServerErrorWindow"
+PilotUITesting.Client.PilotIds+MainWindow | const field ShowUnacceptedChangesErrorWindow : System.String = "showUnacceptedChangesErrorWindow"
+PilotUITesting.Client.PilotIds+MessageBox | static class
+PilotUITesting.Client.PilotIds+MessageBox | const field Yes : System.String = "6"
+PilotUITesting.Client.PilotIds+MessageBox | const field No : System.String = "7"
+PilotUITesting.Client.PilotIds+MessageBox | const field Cancel : System.String = "2"
+PilotUITesting.Client.PilotIds+MessageBox | const field ClientOk : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+MessageBox | const field ClientNo : System.String = "btnNo"
+PilotUITesting.Client.PilotIds+MessageBox | const field ClientCancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+NewTabPage | static class
+PilotUITesting.Client.PilotIds+NewTabPage | const field Container : System.String = "AUIDNewTab"
+PilotUITesting.Client.PilotIds+NewTabPage | const field Tiles : System.String = "AUIDCommandButtons"
+PilotUITesting.Client.PilotIds+NewTabPage | const field RecentDocument : System.String = "AUIDDashboardDocumentItem"
+PilotUITesting.Client.PilotIds+NewTabPage | const field RecentDocumentTitle : System.String = "AUIDRecentDocumentNodeTitle"
+PilotUITesting.Client.PilotIds+NewTabPage | const field RecentTask : System.String = "AUIDDashboardTaskItem"
+PilotUITesting.Client.PilotIds+NewTabPage | const field RecentTaskTitle : System.String = "AUIDRecentTaskNodeTitle"
+PilotUITesting.Client.PilotIds+Progress | static class
+PilotUITesting.Client.PilotIds+Progress | const field Container : System.String = "AUIDUpdateProcessWindow"
+PilotUITesting.Client.PilotIds+Progress | const field Description : System.String = "AUIDUpdateProcessDescription"
+PilotUITesting.Client.PilotIds+Progress | const field ExceptionTitle : System.String = "AUIDProcessExceptionTitle"
+PilotUITesting.Client.PilotIds+Progress | const field InfoPanel : System.String = "AUIDInfoPanel"
+PilotUITesting.Client.PilotIds+Progress | const field Exception : System.String = "AUIDProcessException"
+PilotUITesting.Client.PilotIds+Progress | const field Solution : System.String = "AUIDProcessSolution"
+PilotUITesting.Client.PilotIds+TabContent | static class
+PilotUITesting.Client.PilotIds+TabContent | const field NewTab : System.String = "AUIDNewTab"
+PilotUITesting.Client.PilotIds+TabContent | const field DocumentsExplorer : System.String = "AUIDDocumentsExplorer"
+PilotUITesting.Client.PilotIds+TabContent | const field Tasks : System.String = "AUIDNextTasksTab"
+PilotUITesting.Client.PilotIds+TabContent | const field Reports : System.String = "AUIDReportExplorer"
+PilotUITesting.Client.PilotIds+TabContent | const field Chats : System.String = "AUIDChatsTab"
+PilotUITesting.Client.PilotIds+TabContent | const field WorkingDaysCalendar : System.String = "AUIDWorkingDaysCalendarTab"
+PilotUITesting.Client.PilotIds+TabContent | const field XpsMerger : System.String = "AUIDXpsMergerTab"
+PilotUITesting.Client.PilotIds+Tabs | static class
+PilotUITesting.Client.PilotIds+Tabs | const field Container : System.String = "tabHostView"
+PilotUITesting.Client.PilotIds+Tabs | const field Item : System.String = "AUIDTabItemLayoutDocument"
+PilotUITesting.Client.PilotIds+Tabs | const field Header : System.String = "AUIDTabLayoutDocument"
+PilotUITesting.Client.PilotIds+Tabs | const field Icon : System.String = "tabIcon"
+PilotUITesting.Client.PilotIds+Tabs | const field Title : System.String = "DocumentTitleTextBlock"
+PilotUITesting.Client.PilotIds+Tabs | const field Version : System.String = "DocumentVersionTextBlock"
+PilotUITesting.Client.PilotIds+Tabs | const field Close : System.String = "DocumentCloseButton"
+PilotUITesting.Client.PilotIds+Tabs | const field Add : System.String = "AddTabButton"
+PilotUITesting.Client.PilotIds+Tabs | const field TabList : System.String = "MenuDropDownButton"
+PilotUITesting.Client.PilotIds+Tabs | const field CloseAllButThis : System.String = "AUIDAvalonTabCloseAllButThisMenuItem"
+PilotUITesting.Client.PilotIds+TaskEditor | static class
+PilotUITesting.Client.PilotIds+TaskEditor | const field ContentScroll : System.String = "taskDialogContentScrollViewer"
+PilotUITesting.Client.PilotIds+TaskEditor | const field Card : System.String = "ascTaskCard"
+PilotUITesting.Client.PilotIds+TaskEditor | const field Attachments : System.String = "attachmentsItemControl"
+PilotUITesting.Client.PilotIds+TaskEditor | const field AddAttachment : System.String = "addAttachmentButton"
+PilotUITesting.Client.PilotIds+TaskEditor | const field AddObject : System.String = "addObjectButton"
+PilotUITesting.Client.PilotIds+TaskEditor | const field AddFile : System.String = "addFileButton"
+PilotUITesting.Client.PilotIds+TaskEditor | const field AddFolder : System.String = "addFolderButton"
+PilotUITesting.Client.PilotIds+TaskEditor | const field Ok : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+TaskEditor | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+TaskEditor | const field SaveAsTemplateText : System.String = "saveAsTemplateTxb"
+PilotUITesting.Client.PilotIds+TaskEditor | const field SaveAsTemplate : System.String = "saveAsTemplateLnk"
+PilotUITesting.Client.PilotIds+TaskEditor | const field DeadlineEditor : System.String = "deadlineEditor"
+PilotUITesting.Client.PilotIds+TaskEditor | const field DeadlineDays : System.String = "deadlineDaysEditor"
+PilotUITesting.Client.PilotIds+TaskEditor | const field DeadlineDate : System.String = "PART_TextBox"
+PilotUITesting.Client.PilotIds+TaskEditor | const field CalendarDays : System.String = "CalendarDaysTbl"
+PilotUITesting.Client.PilotIds+TaskEditor | const field ShowTime : System.String = "showTime"
+PilotUITesting.Client.PilotIds+TaskEditor | const field TimePicker : System.String = "timePicker"
+PilotUITesting.Client.PilotIds+Tasks | static class
+PilotUITesting.Client.PilotIds+Tasks | static method CreateItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method CreateSubTaskMenuItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method CreateSubTaskToolbarItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method CreateSubWorkflowMenuItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method CreateSubWorkflowToolbarItem(System.String typeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method EditWorkflowMenuItem(System.String workflowTypeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method EditWorkflowToolbarButton(System.String workflowTypeName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | static method StateTransition(System.String attributeName, System.String stateName) : System.String
+PilotUITesting.Client.PilotIds+Tasks | const field Container : System.String = "AUIDNextTasksTab"
+PilotUITesting.Client.PilotIds+Tasks | const field Back : System.String = "btnBack"
+PilotUITesting.Client.PilotIds+Tasks | const field Next : System.String = "btnNext"
+PilotUITesting.Client.PilotIds+Tasks | const field History : System.String = "btnSearchHistory"
+PilotUITesting.Client.PilotIds+Tasks | const field Search : System.String = "searchEdit"
+PilotUITesting.Client.PilotIds+Tasks | const field Filters : System.String = "filtersListView"
+PilotUITesting.Client.PilotIds+Tasks | const field FilterSettings : System.String = "AUIDTasksFilterSettingsButton"
+PilotUITesting.Client.PilotIds+Tasks | const field ListHost : System.String = "tasksListView"
+PilotUITesting.Client.PilotIds+Tasks | const field List : System.String = "AUIDTaskTreeView"
+PilotUITesting.Client.PilotIds+Tasks | const field InfoPanel : System.String = "infoPanel"
+PilotUITesting.Client.PilotIds+Tasks | const field LoadMoreText : System.String = "AUIDLoadMoreTasksText"
+PilotUITesting.Client.PilotIds+Tasks | const field DetailsSplitter : System.String = "taskDetailSplitter"
+PilotUITesting.Client.PilotIds+Tasks+Details | static class
+PilotUITesting.Client.PilotIds+Tasks+Details | const field ViewClass : System.String = "TaskDetailsView"
+PilotUITesting.Client.PilotIds+Tasks+Details | const field Edit : System.String = "btnEdit"
+PilotUITesting.Client.PilotIds+Tasks+Details | const field Save : System.String = "btnSave"
+PilotUITesting.Client.PilotIds+Tasks+Details | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Tasks+Details | const field Card : System.String = "ascTaskCard"
+PilotUITesting.Client.PilotIds+Tasks+Details | const field Attachments : System.String = "attachmentsItemControl"
+PilotUITesting.Client.PilotIds+Tasks+Menu | static class
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field Container : System.String = "AUIDTaskListContextMenu"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field CreateTaskMenuItem : System.String = "miCreateTaskMenuItem"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field CreateWorkflowMenuItem : System.String = "miCreateWorkflowMenuItem"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field CreateSubTask : System.String = "miCreateSubTask"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field CreateSubWorkflow : System.String = "miCreateSubWorkflow"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field Copy : System.String = "miCopy"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field Navigate : System.String = "miNavigate"
+PilotUITesting.Client.PilotIds+Tasks+Menu | const field Templates : System.String = "miTemplates"
+PilotUITesting.Client.PilotIds+Tasks+Row | static class
+PilotUITesting.Client.PilotIds+Tasks+Row | const field Expander : System.String = "taskNodeExpander"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field KindIcon : System.String = "AUIDImageKind"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field StatusIcon : System.String = "AUIDImageStatus"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field HasAttachmentsIcon : System.String = "AUIDImageHasAttachments"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field Title : System.String = "titleTextBlock"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field Workflow : System.String = "tbWorkflow"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field ExecutorLink : System.String = "commandPopupLink"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field ExecutorText : System.String = "showExecutorPopupLinkText"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field Deadline : System.String = "tbDeadline"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field Type : System.String = "taskType"
+PilotUITesting.Client.PilotIds+Tasks+Row | const field StateIcon : System.String = "stateIcon"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | static class
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field Container : System.String = "taskViewerToolbar"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field CreateTask : System.String = "miCreateTask"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field CreateWorkflow : System.String = "miCreateWorkflow"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field CreateSubTask : System.String = "tbiCreateSubTask"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field CreateSubWorkflowMenu : System.String = "tbiCreateSubWorkflowMenu"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field TasksDisplayOptions : System.String = "tbiTasksDisplayOptions"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field GroupPersonalTemplatesProcesses : System.String = "tbiGroupPersonalTemplatesProcesses"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ShowCompleted : System.String = "tbiShowCompleted"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ShowRevoked : System.String = "tbiShowRevoked"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ShowTaskGroupingsCollapsed : System.String = "tbiShowTaskGroupingsCollapsed"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ShowWorkflowsCollapsed : System.String = "tbiShowWorflowsCollapsed"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ShowSubtasksCollapsed : System.String = "tbiShowSubtasksCollapsed"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field Sort : System.String = "tbiSort"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field Grouping : System.String = "tbiGrouping"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field EnableGroupingByWorkflowsAndStages : System.String = "tbiEnableGroupingByWorkflowsAndStages"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field ConfigureGrouping : System.String = "tbiConfigureGrouping"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field TemplatesManager : System.String = "tbiTemplatesManager"
+PilotUITesting.Client.PilotIds+Tasks+Toolbar | const field Templates : System.String = "tbiTemplates"
+PilotUITesting.Client.PilotIds+ToolbarStripe | static class
+PilotUITesting.Client.PilotIds+ToolbarStripe | static method MenuOf(System.String buttonId) : System.String
+PilotUITesting.Client.PilotIds+ToolbarStripe | static method SplitArrowOf(System.String buttonId) : System.String
+PilotUITesting.Client.PilotIds+ToolbarStripe | const field MoreButton : System.String = "PART_MoreButton"
+PilotUITesting.Client.PilotIds+ToolbarStripe | const field MoreMenu : System.String = "moreButtonMenu"
+PilotUITesting.Client.PilotIds+ToolbarStripe | const field InputBox : System.String = "pageNumber"
+PilotUITesting.Client.PilotIds+ToolbarStripe | const field InputTotal : System.String = "TotalCount"
+PilotUITesting.Client.PilotIds+ToolbarStripe | const field SilentInvokerClass : System.String = "SilentInvoker"
+PilotUITesting.Client.PilotIds+UnsentChanges | static class
+PilotUITesting.Client.PilotIds+UnsentChanges | const field Container : System.String = "AUIDUnacceptedExceptionWindow"
+PilotUITesting.Client.PilotIds+UnsentChanges | const field Message : System.String = "exceptionMessageText"
+PilotUITesting.Client.PilotIds+UnsentChanges | const field Info : System.String = "ServerExceptionDlgInfoText"
+PilotUITesting.Client.PilotIds+UnsentChanges | const field DiscardChanges : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+UnsentChanges | const field FindElement : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+Viewer | static class
+PilotUITesting.Client.PilotIds+Viewer | const field Container : System.String = "AUIDXpsPreview"
+PilotUITesting.Client.PilotIds+Viewer | const field Render : System.String = "xpsRenderView"
+PilotUITesting.Client.PilotIds+Viewer | const field Document : System.String = "xMainDoc"
+PilotUITesting.Client.PilotIds+Viewer | const field FullScreen : System.String = "fullScreenToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer | const field Versions : System.String = "VersionsCombobox"
+PilotUITesting.Client.PilotIds+Viewer | const field SearchBar : System.String = "toolBar"
+PilotUITesting.Client.PilotIds+Viewer | const field FindToolbar : System.String = "FindToolbar"
+PilotUITesting.Client.PilotIds+Viewer | const field FindText : System.String = "FindTextBox"
+PilotUITesting.Client.PilotIds+Viewer | const field FindNext : System.String = "FindNextButton"
+PilotUITesting.Client.PilotIds+Viewer | const field FindPrevious : System.String = "FindPreviousButton"
+PilotUITesting.Client.PilotIds+Viewer | const field BusyText : System.String = "busyText"
+PilotUITesting.Client.PilotIds+Viewer | const field ErrorText : System.String = "errorText"
+PilotUITesting.Client.PilotIds+Viewer | const field NoXps : System.String = "xNoXPS"
+PilotUITesting.Client.PilotIds+Viewer | const field SideTabs : System.String = "xpsViewerTabControl"
+PilotUITesting.Client.PilotIds+Viewer | const field Splitter : System.String = "xpsPreviewSplitter"
+PilotUITesting.Client.PilotIds+Viewer | const field GraphicLayerMenu : System.String = "xGraphicLayerContextMenu"
+PilotUITesting.Client.PilotIds+Viewer | const field PresentationWindow : System.String = "AUIDPresentationView"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | static class
+PilotUITesting.Client.PilotIds+Viewer+Annotations | static method AnnotationStateTransition(System.String attributeName, System.String stateName) : System.String
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Container : System.String = "annotationsTabView"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Filter : System.String = "filterComboBox"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Search : System.String = "filterEdit"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field List : System.String = "annotationsListView"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Splitter : System.String = "splitter"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Author : System.String = "authorTxb"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Date : System.String = "dateTxb"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Text : System.String = "remarkTextBlock"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field Toggle : System.String = "toggleButton"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field StateIcon : System.String = "stateIcon"
+PilotUITesting.Client.PilotIds+Viewer+Annotations | const field StateLink : System.String = "commandPopupLink"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | static class
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field Container : System.String = "AUIDAnnotationsListContextMenu"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field EditCommand : System.String = "miEditCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field ShowInActualVersionCommand : System.String = "miShowInActualVersionCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field CopyToActualVersionCommand : System.String = "miCopyToActualVersionCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field Copy : System.String = "miCopy"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field ShowSharingSettings : System.String = "miShowSharingSettings"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Menu | const field DeleteAnnotationCommand : System.String = "miDeleteAnnotationCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | static class
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | static method SortButton(System.Boolean descending) : System.String
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field Container : System.String = "annotationsToolbar"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field ShowInActualVersionCommand : System.String = "tbiShowInActualVersionCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field CopyToActualVersionCommand : System.String = "tbiCopyToActualVersionCommand"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field EditAnnotation : System.String = "tbiEditAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field Copy : System.String = "tbiCopy"
+PilotUITesting.Client.PilotIds+Viewer+Annotations+Toolbar | const field ShowSharingSettings : System.String = "tbiShowSharingSettings"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | static class
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | static method RemarkItem(System.String remarkTypeName) : System.String
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | static method CompareWithHistory(System.Int32 index) : System.String
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field Container : System.String = "xContextMenu"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field Copy : System.String = "miCopy"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field AddLineAnnotation : System.String = "miAddLineAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field AddGraphicAnnotation : System.String = "miAddGraphicAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field AddFigureAnnotation : System.String = "miAddFigureAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field AddAnnotationForText : System.String = "miAddAnnotationForText"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field AddAnnotationForPoint : System.String = "miAddAnnotationForPoint"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field RotateCW : System.String = "miRotateCW"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field RotateCCW : System.String = "miRotateCCW"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field Fullscreen : System.String = "miFullscreen"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field OverlaySensitivity : System.String = "miOverlaySensitivity"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field ToleranceSoft : System.String = "miToleranceSoft"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field ToleranceMedium : System.String = "miToleranceMedium"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field ToleranceStrict : System.String = "miToleranceStrict"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field DisableComparisonMode : System.String = "miDisableComparisionMode"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field CompareWith : System.String = "miCompareWith"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field CompareMode : System.String = "miCompareMode"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field ChooseDocumentForCompare : System.String = "miChooseDocumentForCompare"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field PreviousVersions : System.String = "miPreviousVersions"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field More : System.String = "miMore"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field NextPage : System.String = "miNextPage"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field PreviousPage : System.String = "miPreviousPage"
+PilotUITesting.Client.PilotIds+Viewer+PageMenu | const field ExitPresentationMode : System.String = "miExitPresentationMode"
+PilotUITesting.Client.PilotIds+Viewer+Sticker | static class
+PilotUITesting.Client.PilotIds+Viewer+Sticker | const field Container : System.String = "AUIDAnnotationSticker"
+PilotUITesting.Client.PilotIds+Viewer+Sticker | const field NotViewedIcon : System.String = "notViewedIcon"
+PilotUITesting.Client.PilotIds+Viewer+Sticker | const field StatusIcon : System.String = "statusImage"
+PilotUITesting.Client.PilotIds+Viewer+Sticker+Menu | static class
+PilotUITesting.Client.PilotIds+Viewer+Sticker+Menu | const field Container : System.String = "annotationStickerContextMenu"
+PilotUITesting.Client.PilotIds+Viewer+Sticker+Menu | const field HideAnnotation : System.String = "miHideAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+Sticker+Menu | const field DeleteAnnotationCommand : System.String = "miDeleteAnnotationCommand"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | static class
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | static method RemarksMenuButton(System.String remarkTypeName) : System.String
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field Container : System.String = "AUIDRenderToolbar"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field ZoomIn : System.String = "zoomInToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field ZoomOut : System.String = "zoomOutToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field SetActualSize : System.String = "setActualSizeToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field FitToPage : System.String = "fitToPageToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field FitToPageHeight : System.String = "fitToPageHeightToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field Print : System.String = "printToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field PresentationMode : System.String = "presentationModeButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field SelectNotes : System.String = "selectNotesToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field LengthCalculation : System.String = "lengthCalculationToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AreaCalculation : System.String = "areaCalculationToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field Annotations : System.String = "miAnnotations"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field OptimizeVisualization : System.String = "miOptimizeVisualization"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field RegularRenderMode : System.String = "miRegularRenderMode"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field OptimizedRenderMode : System.String = "miOptimizedRenderMode"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field TurboRenderMode : System.String = "miTurboRenderMode"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field DisplayStamps : System.String = "tbiDisplayStamps"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field GoToPreviousPage : System.String = "GoToPreviousPageButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field GoToNextPage : System.String = "GoToNextPageButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AddLineAnnotation : System.String = "tbiAddLineAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AddFigureAnnotation : System.String = "tbiAddFigureAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AddGraphicAnnotation : System.String = "tbiAddGraphicAnnotation"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AddAnnotationForPoint : System.String = "tbiAddAnnotationForPoint"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field AddAnnotationForText : System.String = "tbiAddAnnotationForText"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field TextAndGeometryCompare : System.String = "textAndGeometryCompareToggleButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field TextCompare : System.String = "textCompareToggleButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field OverlayCompare : System.String = "overlayCompareToggleButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field ManualCompare : System.String = "manualCompareToggleButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field CompareByPages : System.String = "compareByPages"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field PreviousDifference : System.String = "previousDifference"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field NextDifference : System.String = "nextDifference"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field DrawAreaCompare : System.String = "drawAreaCompareButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field PickDiffColor : System.String = "pickDiffColor"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field Navigation : System.String = "navigationToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field NavigateLeft : System.String = "navigateLeftToolbarButton"
+PilotUITesting.Client.PilotIds+Viewer+Toolbar | const field NavigateRight : System.String = "navigateRightToolbarButton"
+PilotUITesting.Client.PilotIds+WindowsFileDialog | static class
+PilotUITesting.Client.PilotIds+WindowsFileDialog | const field WindowClass : System.String = "#32770"
+PilotUITesting.Client.PilotIds+WindowsFileDialog | const field FileName : System.String = "1148"
+PilotUITesting.Client.PilotIds+WindowsFileDialog | const field SaveFileName : System.String = "1001"
+PilotUITesting.Client.PilotIds+WindowsFileDialog | const field Ok : System.String = "1"
+PilotUITesting.Client.PilotIds+WindowsFileDialog | const field Cancel : System.String = "2"
+PilotUITesting.Client.PilotIds+WorkflowEditor | static class
+PilotUITesting.Client.PilotIds+WorkflowEditor | static method StageItem(System.String stageTypeName, System.Int32 index) : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | static method ExecutorItem(System.String personName, System.Int32 index, System.Int32 stageIndex) : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | static method NewExecutorItem(System.Int32 stageIndex) : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | static method ExecutorInput(System.Int32 stageIndex) : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | static readonly field StageItemPrefix : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | static readonly field ExecutorItemPrefix : System.String
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field Stages : System.String = "StagesScrollViewer"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field TypeName : System.String = "typeNameTextBlock"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field WorkflowCard : System.String = "workflowCard"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field StagesPanel : System.String = "AUIDStagesPanel"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field StagesList : System.String = "executorsItemControl"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field StageCaption : System.String = "stageCaption"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ShowExecutors : System.String = "AUIDShowExecutorsLink"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field StageDeadline : System.String = "stageDeadlineText"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field SelectAllStage : System.String = "selectAllStageBtn"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field DeleteStage : System.String = "deleteStageBtn"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ExecutorTitle : System.String = "executorTitle"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ExecutorDeadline : System.String = "deadlineText"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field TaskKindIcon : System.String = "taskKindIconImage"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field OrgUnitRemove : System.String = "removeOrgUnitItemButton"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field TaskTypeMenuButton : System.String = "taskTypeMenuButton"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field TaskTypeMenu : System.String = "TaskTypeMenu"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field AddStageText : System.String = "addStageTbl"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field AddStage : System.String = "addStageButton"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ExecutorDetails : System.String = "workflowExecutorDetailsScrollViewer"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ExecutorsCard : System.String = "executorsCard"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field SyncAttachmentsText : System.String = "syncAttachmentsText"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field SyncAttachments : System.String = "syncAttachmentsLink"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field ClearAttachments : System.String = "clearAttachmentsLink"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field Ok : System.String = "btnOk"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field Cancel : System.String = "btnCancel"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field SaveAsTemplateText : System.String = "saveAsTemplateTxb"
+PilotUITesting.Client.PilotIds+WorkflowEditor | const field SaveAsTemplate : System.String = "saveAsTemplateLnk"
+PilotUITesting.Client.PilotList | class
+PilotUITesting.Client.PilotList | method VisibleTitles() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotList | method Row(System.String title, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotList | method TryRow(System.String title) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotList | method AllTitles() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotList | method AddToSelection(System.String title) : PilotUITesting.Client.PilotList
+PilotUITesting.Client.PilotList | method SelectMany(params System.String[] titles) : PilotUITesting.Client.PilotList
+PilotUITesting.Client.PilotList | method Has(System.String title) : System.Boolean
+PilotUITesting.Client.PilotList | method Select(System.String title) : PilotUITesting.Client.PilotList
+PilotUITesting.Client.PilotList | method SelectedTitles() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotList | method WaitRow(System.String title, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotList | method WaitNoRow(System.String title, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotList | method ToString() : System.String
+PilotUITesting.Client.PilotList | property Root : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotMenu | class
+PilotUITesting.Client.PilotMenu | static method Wait(PilotUITesting.Client.PilotApp app, System.String menuId, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotMenu | static method OpenFor(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement target, System.String menuId = null, PilotUITesting.Client.MenuOpenMethod method = AppsKey) : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotMenu | method Items() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotMenuItem>
+PilotUITesting.Client.PilotMenu | method Has(System.String itemId) : System.Boolean
+PilotUITesting.Client.PilotMenu | method Click(params System.String[] path) : System.Void
+PilotUITesting.Client.PilotMenu | method ClickText(params System.String[] captions) : System.Void
+PilotUITesting.Client.PilotMenu | method Submenu(System.String itemId) : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotMenu | method Close() : System.Void
+PilotUITesting.Client.PilotMenu | method ToString() : System.String
+PilotUITesting.Client.PilotMenu | property Id : System.String { get; }
+PilotUITesting.Client.PilotMenu | property Root : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotMenu | property IsOpen : System.Boolean { get; }
+PilotUITesting.Client.PilotMenuItem | class
+PilotUITesting.Client.PilotMenuItem | method ToString() : System.String
+PilotUITesting.Client.PilotMenuItem | property IsChecked : System.Boolean? { get; }
+PilotUITesting.Client.PilotMenuItem | property Id : System.String { get; }
+PilotUITesting.Client.PilotMenuItem | property Caption : System.String { get; }
+PilotUITesting.Client.PilotMenuItem | property IsEnabled : System.Boolean { get; }
+PilotUITesting.Client.PilotMenuItem | property HasSubmenu : System.Boolean { get; }
+PilotUITesting.Client.PilotMessageBox | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotMessageBox | ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.PilotMessageBox | method Answer(PilotUITesting.Client.MessageBoxAnswer answer) : System.Void
+PilotUITesting.Client.PilotMessageBox | property Text : System.String { get; }
+PilotUITesting.Client.PilotMessageBox | property Buttons : System.Collections.Generic.IReadOnlyList<System.ValueTuple<System.String, System.String>> { get; }
+PilotUITesting.Client.PilotModuleView | class : PilotUITesting.Client.PilotPage
+PilotUITesting.Client.PilotModuleView | protected ctor(PilotUITesting.Client.PilotModuleView opened)
+PilotUITesting.Client.PilotModuleView | static method OpenedBy(PilotUITesting.Client.PilotApp app, System.String viewClassName, System.Action open, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotModuleView
+PilotUITesting.Client.PilotModuleView | protected method ResolveRoot() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotModuleView | method Close(System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotModuleView | static method FindAll(PilotUITesting.Client.PilotApp app, System.String viewClassName) : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Client.PilotModuleView | property ViewClassName : System.String { get; }
+PilotUITesting.Client.PilotModuleView | property IsVisible : System.Boolean { get; }
+PilotUITesting.Client.PilotNewSettingsItemWindow | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotNewSettingsItemWindow | static method Wait(PilotUITesting.Client.PilotApp app, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotNewSettingsItemWindow
+PilotUITesting.Client.PilotNewSettingsItemWindow | static method TryFind(PilotUITesting.Client.PilotApp app) : PilotUITesting.Client.PilotNewSettingsItemWindow
+PilotUITesting.Client.PilotNewSettingsItemWindow | method OpenOrgUnitPicker(System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotOrgUnitPickerWindow
+PilotUITesting.Client.PilotNewSettingsItemWindow | method PickOrgUnit(System.String caption, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotNewSettingsItemWindow | method Submit() : System.Void
+PilotUITesting.Client.PilotNewSettingsItemWindow | method Cancel() : System.Void
+PilotUITesting.Client.PilotNewSettingsItemWindow | property FeatureTitle : System.String { get; }
+PilotUITesting.Client.PilotNewSettingsItemWindow | property CanSubmit : System.Boolean { get; }
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field WindowName : System.String = "AUIDNewSettingsItem"
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field WindowTitle : System.String = "Новая конфигурация"
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field GroupTitleId : System.String = "GroupTitleTextBlock"
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field PickOrgUnitLinkId : System.String = "showExecutorsLink"
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field OkButtonId : System.String = "btnOk"
+PilotUITesting.Client.PilotNewSettingsItemWindow | const field CancelButtonId : System.String = "btnCancel"
+PilotUITesting.Client.PilotObjectDialog | class
+PilotUITesting.Client.PilotObjectDialog | static method WaitCreate(PilotUITesting.Client.PilotApp app, System.TimeSpan timeout) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | static method WaitAny(PilotUITesting.Client.PilotApp app, System.TimeSpan timeout, System.String attributeName = "name") : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | static method WaitEdit(PilotUITesting.Client.PilotApp app, System.TimeSpan timeout, System.String attributeName = "name") : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | method Field(System.String attributeName) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotObjectDialog | method HasField(System.String attributeName) : System.Boolean
+PilotUITesting.Client.PilotObjectDialog | method FieldValue(System.String attributeName) : System.String
+PilotUITesting.Client.PilotObjectDialog | method SetField(System.String attributeName, System.String value) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | method FindReferenceBookDialog() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotObjectDialog | method PickReference(System.String attributeName, System.String itemText) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | method PickReferenceByPath(System.String attributeName, params System.String[] path) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | method AttachFile(System.String path) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | method FindFileDialog() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotObjectDialog | method Submit() : System.Void
+PilotUITesting.Client.PilotObjectDialog | method Cancel() : System.Void
+PilotUITesting.Client.PilotObjectDialog | method WaitClosed() : System.Void
+PilotUITesting.Client.PilotObjectDialog | static method WaitCreate(PilotUITesting.Client.PilotApp app) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | static method WaitEdit(PilotUITesting.Client.PilotApp app) : PilotUITesting.Client.PilotObjectDialog
+PilotUITesting.Client.PilotObjectDialog | property Window : FlaUI.Core.AutomationElements.Window { get; }
+PilotUITesting.Client.PilotObjectDialog | property Title : System.String { get; }
+PilotUITesting.Client.PilotObjectDialog | property ObjectTypeTitle : System.String { get; }
+PilotUITesting.Client.PilotObjectDialog | property SubmitButton : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotObjectDialog | property CanSubmit : System.Boolean { get; }
+PilotUITesting.Client.PilotObjectDialog | property IsClosed : System.Boolean { get; }
+PilotUITesting.Client.PilotObjectDialog | property Card : PilotUITesting.Client.PilotCard { get; }
+PilotUITesting.Client.PilotObjectDialog | const field CreateWindowId : System.String = "AUIDCreateObject"
+PilotUITesting.Client.PilotObjectDialog | const field CreateWindowTitle : System.String = "Создание нового элемента"
+PilotUITesting.Client.PilotObjectDialog | const field AttributePrefix : System.String = "AUID"
+PilotUITesting.Client.PilotObjectDialog | const field CreateButtonId : System.String = "btnCreate"
+PilotUITesting.Client.PilotObjectDialog | const field SaveButtonId : System.String = "btnSave"
+PilotUITesting.Client.PilotObjectDialog | const field CancelButtonId : System.String = "btnCancel"
+PilotUITesting.Client.PilotObjectDialog | const field OpenFileButtonId : System.String = "tbiOpenFile"
+PilotUITesting.Client.PilotObjectDialog | const field FileDialogClass : System.String = "#32770"
+PilotUITesting.Client.PilotObjectDialog | const field FileDialogNameEditId : System.String = "1148"
+PilotUITesting.Client.PilotObjectDialog | const field FileDialogOpenButtonId : System.String = "1"
+PilotUITesting.Client.PilotObjectDialog | const field FileDialogCancelButtonId : System.String = "2"
+PilotUITesting.Client.PilotObjectDialog | const field EditWindowTitle : System.String = "Редактирование элемента"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookWindowId : System.String = "Справочник"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookSearchId : System.String = "searchEdit"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookTreeId : System.String = "ascTreeView"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookOkId : System.String = "btnOk"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookItemCheckBoxId : System.String = "checkBox"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookItemTitleId : System.String = "titleTextBlock"
+PilotUITesting.Client.PilotObjectDialog | const field FieldPickerButtonId : System.String = "PART_Right_Button"
+PilotUITesting.Client.PilotObjectDialog | const field ReferenceBookExpanderId : System.String = "expander"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotOrgUnitPickerWindow | static method Wait(PilotUITesting.Client.PilotApp app, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotOrgUnitPickerWindow
+PilotUITesting.Client.PilotOrgUnitPickerWindow | method TryItem(System.String caption) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotOrgUnitPickerWindow | method Choose(System.String caption, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotOrgUnitPickerWindow | method Cancel() : System.Void
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field WindowTitle : System.String = "Организационная структура"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field FilterId : System.String = "filterEdit"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field ListId : System.String = "ascTreeView"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field CheckBoxId : System.String = "checkBox"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field ChooseButtonId : System.String = "btnAdd"
+PilotUITesting.Client.PilotOrgUnitPickerWindow | const field CancelButtonId : System.String = "btnCancel"
+PilotUITesting.Client.PilotPage | class
+PilotUITesting.Client.PilotPage | protected ctor(PilotUITesting.Client.PilotApp app, System.String description)
+PilotUITesting.Client.PilotPage | protected method ResolveRoot() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotPage | method Find(System.String automationId, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotPage | method Find(PilotUITesting.Uia.By selector, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotPage | method TryFind(System.String automationId) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotPage | method TryFind(PilotUITesting.Uia.By selector) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotPage | method Has(System.String automationId) : System.Boolean
+PilotUITesting.Client.PilotPage | method Has(PilotUITesting.Uia.By selector) : System.Boolean
+PilotUITesting.Client.PilotPage | method AssertAbsent(PilotUITesting.Uia.By selector, System.TimeSpan? stableFor = null) : System.Void
+PilotUITesting.Client.PilotPage | method Click(System.String automationId, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotPage | method Click(PilotUITesting.Uia.By selector, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotPage | method ClickText(System.String caption, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotPage | method MouseClick(PilotUITesting.Uia.By selector) : System.Void
+PilotUITesting.Client.PilotPage | method DoubleClick(PilotUITesting.Uia.By selector) : System.Void
+PilotUITesting.Client.PilotPage | method RightClick(PilotUITesting.Uia.By selector) : System.Void
+PilotUITesting.Client.PilotPage | method SetValue(System.String automationId, System.String value) : System.Void
+PilotUITesting.Client.PilotPage | method ValueOf(System.String automationId) : System.String
+PilotUITesting.Client.PilotPage | method ValueOf(PilotUITesting.Uia.By selector) : System.String
+PilotUITesting.Client.PilotPage | method SetValue(PilotUITesting.Uia.By selector, System.String value) : System.Void
+PilotUITesting.Client.PilotPage | method IsEnabled(PilotUITesting.Uia.By selector) : System.Boolean
+PilotUITesting.Client.PilotPage | method IsChecked(PilotUITesting.Uia.By selector) : System.Boolean?
+PilotUITesting.Client.PilotPage | method SetChecked(PilotUITesting.Uia.By selector, System.Boolean value, PilotUITesting.Uia.CheckInput input = TogglePattern) : System.Void
+PilotUITesting.Client.PilotPage | method ComboItems(PilotUITesting.Uia.By combo) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotPage | method Choose(PilotUITesting.Uia.By combo, System.String itemCaption) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotPage | method Texts() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotPage | method TryText(System.Func<System.String, System.Boolean> match) : System.String
+PilotUITesting.Client.PilotPage | method WaitText(System.Func<System.String, System.Boolean> match, System.TimeSpan? timeout = null, System.String description = null) : System.String
+PilotUITesting.Client.PilotPage | method ToolbarById(System.String toolbarId) : PilotUITesting.Client.PilotToolbar
+PilotUITesting.Client.PilotPage | method ToolbarWith(System.String anyButtonId) : PilotUITesting.Client.PilotToolbar
+PilotUITesting.Client.PilotPage | method CardIn(System.String containerId) : PilotUITesting.Client.PilotCard
+PilotUITesting.Client.PilotPage | method ListById(System.String listId, System.Func<FlaUI.Core.AutomationElements.AutomationElement, System.String> rowTitle = null) : PilotUITesting.Client.PilotList
+PilotUITesting.Client.PilotPage | method ListBy(PilotUITesting.Uia.By selector, System.Func<FlaUI.Core.AutomationElements.AutomationElement, System.String> rowTitle = null) : PilotUITesting.Client.PilotList
+PilotUITesting.Client.PilotPage | method GridById(System.String gridId) : PilotUITesting.Uia.UiGrid
+PilotUITesting.Client.PilotPage | method Dump(System.Int32 maxDepth = 40) : System.String
+PilotUITesting.Client.PilotPage | method ToString() : System.String
+PilotUITesting.Client.PilotPage | property App : PilotUITesting.Client.PilotApp { get; }
+PilotUITesting.Client.PilotPage | property Description : System.String { get; }
+PilotUITesting.Client.PilotPage | property Root : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotPage | property Card : PilotUITesting.Client.PilotCard { get; }
+PilotUITesting.Client.PilotReferenceBook | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotReferenceBook | ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.PilotReferenceBook | method Search(System.String text) : PilotUITesting.Client.PilotReferenceBook
+PilotUITesting.Client.PilotReferenceBook | method Titles() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Client.PilotReferenceBook | method ExpandPath(params System.String[] path) : PilotUITesting.Client.PilotReferenceBook
+PilotUITesting.Client.PilotReferenceBook | method Check(System.String title) : PilotUITesting.Client.PilotReferenceBook
+PilotUITesting.Client.PilotReferenceBook | method Ok() : System.Void
+PilotUITesting.Client.PilotReferenceBook | method Submit() : System.Void
+PilotUITesting.Client.PilotReferenceBook | method Cancel() : System.Void
+PilotUITesting.Client.PilotStatus | static class
+PilotUITesting.Client.PilotStatus | static method Parse(System.String text) : PilotUITesting.Client.PilotStatusValue
+PilotUITesting.Client.PilotStatus | static method ToolbarItem(System.String itemStatus) : System.ValueTuple<System.Boolean, System.Boolean?>
+PilotUITesting.Client.PilotStatus | static method TabHeader(System.String helpText) : System.ValueTuple<System.Boolean, System.String>
+PilotUITesting.Client.PilotStatus | static method Window(System.String helpText) : System.ValueTuple<System.Boolean, System.Boolean, System.String>
+PilotUITesting.Client.PilotStatus | static method Connection(System.String helpText) : PilotUITesting.Client.ClientConnection
+PilotUITesting.Client.PilotStatus | static method IsLoadingTabs(System.String itemStatus) : System.Boolean
+PilotUITesting.Client.PilotStatus | static method StripAccessKey(System.String caption) : System.String
+PilotUITesting.Client.PilotStatusValue | class
+PilotUITesting.Client.PilotStatusValue | method Has(System.String key) : System.Boolean
+PilotUITesting.Client.PilotStatusValue | method Get(System.String key) : System.String
+PilotUITesting.Client.PilotStatusValue | method GetBool(System.String key) : System.Boolean
+PilotUITesting.Client.PilotStatusValue | property Raw : System.String { get; }
+PilotUITesting.Client.PilotStatusValue | property Values : System.Collections.Generic.IReadOnlyDictionary<System.String, System.String> { get; }
+PilotUITesting.Client.PilotStatusValue | property Labels : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Client.PilotTab | class
+PilotUITesting.Client.PilotTab | method Activate() : PilotUITesting.Client.PilotTab
+PilotUITesting.Client.PilotTab | method Close() : System.Void
+PilotUITesting.Client.PilotTab | method ToString() : System.String
+PilotUITesting.Client.PilotTab | property Header : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotTab | property Title : System.String { get; }
+PilotUITesting.Client.PilotTab | property LastKnownTitle : System.String { get; }
+PilotUITesting.Client.PilotTab | property ContentId : System.String { get; }
+PilotUITesting.Client.PilotTab | property IsActive : System.Boolean { get; }
+PilotUITesting.Client.PilotTab | property IsOpen : System.Boolean { get; }
+PilotUITesting.Client.PilotTab | property Content : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotTabBar | class
+PilotUITesting.Client.PilotTabBar | method All() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotTab>
+PilotUITesting.Client.PilotTabBar | method Find(System.Func<PilotUITesting.Client.PilotTab, System.Boolean> match) : PilotUITesting.Client.PilotTab
+PilotUITesting.Client.PilotTabBar | method Wait(System.Func<PilotUITesting.Client.PilotTab, System.Boolean> match, System.TimeSpan? timeout = null, System.String description = null) : PilotUITesting.Client.PilotTab
+PilotUITesting.Client.PilotTabBar | method OpenedBy(System.Action open, System.Func<PilotUITesting.Client.PilotTab, System.Boolean> match = null, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotTab
+PilotUITesting.Client.PilotTabBar | method OpenTile(System.String caption, System.String expectedContentId = null, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotTab
+PilotUITesting.Client.PilotTabBar | method CloseWhere(System.Func<PilotUITesting.Client.PilotTab, System.Boolean> match) : System.Int32
+PilotUITesting.Client.PilotTabBar | property Active : PilotUITesting.Client.PilotTab { get; }
+PilotUITesting.Client.PilotTabPage | class : PilotUITesting.Client.PilotPage
+PilotUITesting.Client.PilotTabPage | ctor(PilotUITesting.Client.PilotTab tab)
+PilotUITesting.Client.PilotTabPage | protected method ResolveRoot() : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.PilotTabPage | method Close() : System.Void
+PilotUITesting.Client.PilotTabPage | property Tab : PilotUITesting.Client.PilotTab { get; }
+PilotUITesting.Client.PilotTitles | static class
+PilotUITesting.Client.PilotTitles+Buttons | static class
+PilotUITesting.Client.PilotTitles+Buttons | const field Create : System.String = "Создать"
+PilotUITesting.Client.PilotTitles+Buttons | const field Cancel : System.String = "Отмена"
+PilotUITesting.Client.PilotTitles+Buttons | const field Save : System.String = "Сохранить"
+PilotUITesting.Client.PilotTitles+Buttons | const field Ok : System.String = "OK"
+PilotUITesting.Client.PilotTitles+Buttons | const field Yes : System.String = "Да"
+PilotUITesting.Client.PilotTitles+Buttons | const field No : System.String = "Нет"
+PilotUITesting.Client.PilotTitles+Buttons | const field Delete : System.String = "Удалить"
+PilotUITesting.Client.PilotTitles+Buttons | const field NotDelete : System.String = "Не удалять"
+PilotUITesting.Client.PilotTitles+Buttons | const field Revoke : System.String = "Отозвать"
+PilotUITesting.Client.PilotTitles+Buttons | const field NotRevoke : System.String = "Не отзывать"
+PilotUITesting.Client.PilotTitles+Buttons | const field GiveTask : System.String = "Выдать задание"
+PilotUITesting.Client.PilotTitles+Buttons | const field Add : System.String = "Добавить"
+PilotUITesting.Client.PilotTitles+Buttons | const field Attach : System.String = "Вложить"
+PilotUITesting.Client.PilotTitles+Buttons | const field Close : System.String = "Закрыть"
+PilotUITesting.Client.PilotTitles+Buttons | const field LoadMore : System.String = "Загрузить еще"
+PilotUITesting.Client.PilotTitles+Buttons | const field CreateAsSecret : System.String = "Создать скрытым"
+PilotUITesting.Client.PilotTitles+Connection | static class
+PilotUITesting.Client.PilotTitles+Connection | const field Online : System.String = "ПОДКЛЮЧЕНО"
+PilotUITesting.Client.PilotTitles+Connection | const field Offline : System.String = "АВТОНОМНАЯ РАБОТА"
+PilotUITesting.Client.PilotTitles+Connection | const field NoConnection : System.String = "НЕТ ПОДКЛЮЧЕНИЯ"
+PilotUITesting.Client.PilotTitles+Explorer | static class
+PilotUITesting.Client.PilotTitles+Explorer | const field Favorites : System.String = "Избранное"
+PilotUITesting.Client.PilotTitles+Explorer | const field RecycleBin : System.String = "Корзина"
+PilotUITesting.Client.PilotTitles+Explorer | const field AllDeleted : System.String = "Все удалённые"
+PilotUITesting.Client.PilotTitles+Explorer | const field DeletedByMe : System.String = "Удалённые мной"
+PilotUITesting.Client.PilotTitles+Explorer | const field SearchResults : System.String = "Результаты поиска"
+PilotUITesting.Client.PilotTitles+Explorer | const field FilesTab : System.String = "Файлы"
+PilotUITesting.Client.PilotTitles+Explorer | const field TasksTab : System.String = "Задания"
+PilotUITesting.Client.PilotTitles+Explorer | const field LinksTab : System.String = "Связи"
+PilotUITesting.Client.PilotTitles+NewTab | static class
+PilotUITesting.Client.PilotTitles+NewTab | const field PageTitle : System.String = "Новая вкладка"
+PilotUITesting.Client.PilotTitles+NewTab | const field ProjectsAndDocuments : System.String = "Проекты и документы"
+PilotUITesting.Client.PilotTitles+NewTab | const field Tasks : System.String = "Задания"
+PilotUITesting.Client.PilotTitles+NewTab | const field Reports : System.String = "Отчеты"
+PilotUITesting.Client.PilotTitles+NewTab | const field Messages : System.String = "Сообщения"
+PilotUITesting.Client.PilotTitles+NewTab | const field GeometrySearch : System.String = "Поиск по геометрии"
+PilotUITesting.Client.PilotTitles+NewTab | const field XpsMerger : System.String = "Компоновщик документов"
+PilotUITesting.Client.PilotTitles+NewTab | const field WorkingDaysCalendar : System.String = "Календарь рабочих дней"
+PilotUITesting.Client.PilotTitles+NewTab | const field GroupMainTools : System.String = "Основные инструменты"
+PilotUITesting.Client.PilotTitles+NewTab | const field GroupEnterpriseFeatures : System.String = "Возможности Enterprise"
+PilotUITesting.Client.PilotTitles+NewTab | const field GroupExtensions : System.String = "Модули расширения"
+PilotUITesting.Client.PilotTitles+Viewer | static class
+PilotUITesting.Client.PilotTitles+Viewer | const field RemarksTab : System.String = "Замечания"
+PilotUITesting.Client.PilotTitles+WindowNames | static class
+PilotUITesting.Client.PilotTitles+WindowNames | static readonly field DocumentTemplateItemPrefix : System.String
+PilotUITesting.Client.PilotTitles+WindowNames | const field TaskEditor : System.String = "AUIDNextTasksEdit"
+PilotUITesting.Client.PilotTitles+WindowNames | const field WorkflowEditor : System.String = "AUIDWorkflowEditView"
+PilotUITesting.Client.PilotTitles+WindowNames | const field ObjectSelector : System.String = "AUIDProjectsExplorer"
+PilotUITesting.Client.PilotTitles+WindowNames | const field DocumentTemplateSelector : System.String = "AUIDDocumentTemplateSelector"
+PilotUITesting.Client.PilotTitles+Windows | static class
+PilotUITesting.Client.PilotTitles+Windows | static readonly field NewTaskPrefix : System.String
+PilotUITesting.Client.PilotTitles+Windows | static readonly field EditTaskPrefix : System.String
+PilotUITesting.Client.PilotTitles+Windows | static readonly field NewWorkflowPrefix : System.String
+PilotUITesting.Client.PilotTitles+Windows | static readonly field EditWorkflowPrefix : System.String
+PilotUITesting.Client.PilotTitles+Windows | const field CreateCard : System.String = "Создание нового элемента"
+PilotUITesting.Client.PilotTitles+Windows | const field EditCard : System.String = "Редактирование элемента"
+PilotUITesting.Client.PilotTitles+Windows | const field DeleteConfirmation : System.String = "Подтверждение операции удаления"
+PilotUITesting.Client.PilotTitles+Windows | const field RevokeConfirmation : System.String = "Подтверждение отзыва"
+PilotUITesting.Client.PilotTitles+Windows | const field ReferenceBook : System.String = "Справочник"
+PilotUITesting.Client.PilotTitles+Windows | const field ElementBook : System.String = "Справочник элементов"
+PilotUITesting.Client.PilotTitles+Windows | const field OrgStructure : System.String = "Организационная структура"
+PilotUITesting.Client.PilotToolbar | class
+PilotUITesting.Client.PilotToolbar | method Buttons() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotToolbarButton>
+PilotUITesting.Client.PilotToolbar | method Has(System.String id) : System.Boolean
+PilotUITesting.Client.PilotToolbar | method IsEnabled(System.String id) : System.Boolean
+PilotUITesting.Client.PilotToolbar | method IsHidden(System.String id) : System.Boolean
+PilotUITesting.Client.PilotToolbar | method IsChecked(System.String id) : System.Boolean?
+PilotUITesting.Client.PilotToolbar | method Click(System.String id, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotToolbar | method SetChecked(System.String id, System.Boolean value) : System.Void
+PilotUITesting.Client.PilotToolbar | method OpenMenu(System.String id) : PilotUITesting.Client.PilotMenu
+PilotUITesting.Client.PilotToolbar | method ClickMenuItem(System.String id, params System.String[] path) : System.Void
+PilotUITesting.Client.PilotToolbar | method ToString() : System.String
+PilotUITesting.Client.PilotToolbar | property Root : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Client.PilotToolbarButton | class
+PilotUITesting.Client.PilotToolbarButton | method ToString() : System.String
+PilotUITesting.Client.PilotToolbarButton | property Id : System.String { get; }
+PilotUITesting.Client.PilotToolbarButton | property Caption : System.String { get; }
+PilotUITesting.Client.PilotToolbarButton | property IsEnabled : System.Boolean { get; }
+PilotUITesting.Client.PilotToolbarButton | property IsHidden : System.Boolean { get; }
+PilotUITesting.Client.PilotToolbarButton | property IsChecked : System.Boolean? { get; }
+PilotUITesting.Client.PilotUnsentChangesWindow | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotUnsentChangesWindow | ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.PilotUnsentChangesWindow | method DiscardChanges() : System.Void
+PilotUITesting.Client.PilotUnsentChangesWindow | property Message : System.String { get; }
+PilotUITesting.Client.PilotWindows | class
+PilotUITesting.Client.PilotWindows | method All() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotDialog>
+PilotUITesting.Client.PilotWindows | method Wait(System.String title, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotWindows | method Wait(PilotUITesting.Uia.By selector, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotWindows | method TryFind(System.String title) : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotWindows | method TryFind(PilotUITesting.Uia.By selector) : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotWindows | method OpenedBy(System.Action open, PilotUITesting.Uia.By selector = null, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.PilotWindows | method NewWindowsAfter(System.Action action, System.TimeSpan observeFor, PilotUITesting.Uia.By selector = null) : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotDialog>
+PilotUITesting.Client.PilotWindows | method WaitGone(System.String title, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Client.PilotWindows | method WaitMessageBox(System.String title, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotMessageBox
+PilotUITesting.Client.PilotWindows | method WaitFileDialog(System.TimeSpan? timeout = null) : PilotUITesting.Client.WindowsFileDialog
+PilotUITesting.Client.PilotWindows | method Errors() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotErrorWindow>
+PilotUITesting.Client.PilotWindows | method UnsentChanges() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Client.PilotUnsentChangesWindow>
+PilotUITesting.Client.PilotWindows | method ResetUi(PilotUITesting.Client.UiResetOptions options) : PilotUITesting.Client.UiResetReport
+PilotUITesting.Client.PilotWindows | method Popups() : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Client.PilotWindows | method WaitInPopup(PilotUITesting.Uia.By selector, System.TimeSpan? timeout = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Client.ShownWhenAttribute | class : System.Attribute
+PilotUITesting.Client.ShownWhenAttribute | ctor(System.String condition)
+PilotUITesting.Client.ShownWhenAttribute | property Condition : System.String { get; }
+PilotUITesting.Client.UiResetOptions | class
+PilotUITesting.Client.UiResetOptions | ctor()
+PilotUITesting.Client.UiResetOptions | property CancelButtonIds : System.Collections.Generic.IReadOnlyList<System.String> { get; set; }
+PilotUITesting.Client.UiResetOptions | property UnsentChanges : PilotUITesting.UnsentChangesPolicy { get; set; }
+PilotUITesting.Client.UiResetReport | class
+PilotUITesting.Client.UiResetReport | property Actions : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Client.UiResetReport | property Remaining : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Client.UiResetReport | property Clean : System.Boolean { get; }
+PilotUITesting.Client.WindowsFileDialog | class : PilotUITesting.Client.PilotDialog
+PilotUITesting.Client.WindowsFileDialog | ctor(PilotUITesting.Client.PilotDialog dialog)
+PilotUITesting.Client.WindowsFileDialog | method Open(System.String path) : System.Void
+PilotUITesting.Client.WindowsFileDialog | method SaveAs(System.String path) : System.String
+PilotUITesting.Client.WindowsFileDialog | method Cancel() : System.Void
+PilotUITesting.Data.LocalFileBackup | class
+PilotUITesting.Data.LocalFileBackup | static method Take(params System.String[] paths) : PilotUITesting.Data.LocalFileBackup
+PilotUITesting.Data.LocalFileBackup | method Restore() : System.Void
+PilotUITesting.Data.LocalFileBackup | property Paths : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Data.ObjectRef | class
+PilotUITesting.Data.ObjectRef | ctor(System.Guid id, System.String title)
+PilotUITesting.Data.ObjectRef | method ToString() : System.String
+PilotUITesting.Data.ObjectRef | property Id : System.Guid { get; }
+PilotUITesting.Data.ObjectRef | property Title : System.String { get; }
+PilotUITesting.Data.PilotSandbox | class
+PilotUITesting.Data.PilotSandbox | static method Create(PilotUITesting.Data.PilotServerClient server, PilotUITesting.Data.PilotSandboxConfig config, System.String tag) : PilotUITesting.Data.PilotSandbox
+PilotUITesting.Data.PilotSandbox | method Unique(System.String baseTitle) : System.String
+PilotUITesting.Data.PilotSandbox | method CreateFolder(System.String title, PilotUITesting.Data.ObjectRef parent = null) : PilotUITesting.Data.ObjectRef
+PilotUITesting.Data.PilotSandbox | method CreateDocument(System.String title, PilotUITesting.Data.ObjectRef parent = null, System.String filePath = null) : PilotUITesting.Data.ObjectRef
+PilotUITesting.Data.PilotSandbox | method Create(System.Guid parentId, System.String typeName, params System.ValueTuple<System.String, System.Object>[] attributes) : System.Guid
+PilotUITesting.Data.PilotSandbox | method Track(System.Guid id) : System.Void
+PilotUITesting.Data.PilotSandbox | method Dispose() : System.Void
+PilotUITesting.Data.PilotSandbox | property Root : PilotUITesting.Data.ObjectRef { get; }
+PilotUITesting.Data.PilotSandbox | property RootCreatedUtc : System.DateTime { get; }
+PilotUITesting.Data.PilotSandbox | property RunTag : System.String { get; }
+PilotUITesting.Data.PilotSandboxConfig | class
+PilotUITesting.Data.PilotSandboxConfig | ctor()
+PilotUITesting.Data.PilotSandboxConfig | method Validate() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Data.PilotSandboxConfig | property RootType : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property RootTitleAttribute : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property FolderType : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property FolderTitleAttribute : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property DocumentType : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property DocumentTitleAttribute : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property NamePrefix : System.String { get; set; }
+PilotUITesting.Data.PilotSandboxConfig | property Cleanup : PilotUITesting.Data.SandboxCleanup { get; set; }
+PilotUITesting.Data.PilotServerClient | class
+PilotUITesting.Data.PilotServerClient | ctor()
+PilotUITesting.Data.PilotServerClient | static method Connect(System.String serverUrlWithDatabase, System.String login, System.String password, System.Int32 licenseType = 100) : PilotUITesting.Data.PilotServerClient
+PilotUITesting.Data.PilotServerClient | method CreateModifier() : Ascon.Pilot.DataModifier.IModifier
+PilotUITesting.Data.PilotServerClient | method TypeByName(System.String name) : Ascon.Pilot.DataClasses.MType
+PilotUITesting.Data.PilotServerClient | method HasType(System.String name) : System.Boolean
+PilotUITesting.Data.PilotServerClient | method StateByName(System.String name) : Ascon.Pilot.DataClasses.MUserState
+PilotUITesting.Data.PilotServerClient | method CreateObject(System.Guid parentId, System.String typeName, System.Collections.Generic.IDictionary<System.String, System.Object> attributes = null) : System.Guid
+PilotUITesting.Data.PilotServerClient | method CreateObjectWithId(System.Guid id, System.Guid parentId, System.String typeName, System.Collections.Generic.IDictionary<System.String, System.Object> attributes = null) : System.Guid
+PilotUITesting.Data.PilotServerClient | method SetAttributes(System.Guid id, System.Collections.Generic.IDictionary<System.String, System.Object> attributes) : System.Void
+PilotUITesting.Data.PilotServerClient | method SetAttribute(System.Guid id, System.String name, System.Object value) : System.Void
+PilotUITesting.Data.PilotServerClient | method SetState(System.Guid id, System.String stateAttribute, System.Guid stateId) : System.Void
+PilotUITesting.Data.PilotServerClient | method AddFile(System.Guid id, System.String filePath, System.String snapshotReason = "UI test") : System.Void
+PilotUITesting.Data.PilotServerClient | method ReadFileBytes(Ascon.Pilot.DataClasses.DFileBody body) : System.Byte[]
+PilotUITesting.Data.PilotServerClient | method MoveToRecycleBin(System.Guid id) : System.Void
+PilotUITesting.Data.PilotServerClient | method GetObject(System.Guid id) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method GetObjects(System.Collections.Generic.IEnumerable<System.Guid> ids) : System.Collections.Generic.List<Ascon.Pilot.DataClasses.DObject>
+PilotUITesting.Data.PilotServerClient | method GetChildren(System.Guid parentId, System.String typeName = null) : System.Collections.Generic.List<Ascon.Pilot.DataClasses.DObject>
+PilotUITesting.Data.PilotServerClient | method FindChild(System.Guid parentId, System.String typeName, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> predicate = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitObject(System.Guid id, System.Int32 timeoutMs = 15000, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> condition = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitChild(System.Guid parentId, System.String typeName, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> predicate, System.Int32 timeoutMs = 20000) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | static method Attr(Ascon.Pilot.DataClasses.DObject obj, System.String name) : System.String
+PilotUITesting.Data.PilotServerClient | static method StateOf(Ascon.Pilot.DataClasses.DObject obj, System.String stateAttribute = "approvedState") : System.Guid?
+PilotUITesting.Data.PilotServerClient | method TypeNameOf(Ascon.Pilot.DataClasses.DObject obj) : System.String
+PilotUITesting.Data.PilotServerClient | method Dispose() : System.Void
+PilotUITesting.Data.PilotServerClient | method ErrorsSince(System.DateTime utc) : System.Collections.Generic.IReadOnlyList<PilotUITesting.Data.ServerError>
+PilotUITesting.Data.PilotServerClient | static method Exists(Ascon.Pilot.DataClasses.DObject obj) : System.Boolean
+PilotUITesting.Data.PilotServerClient | method Exists(System.Guid id) : System.Boolean
+PilotUITesting.Data.PilotServerClient | method TryGetExisting(System.Guid id) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method IsAlive(System.Guid id) : System.Boolean
+PilotUITesting.Data.PilotServerClient | method IsInRecycleBin(System.Guid id) : System.Boolean
+PilotUITesting.Data.PilotServerClient | method WaitObject(System.Guid id, System.TimeSpan timeout, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> condition = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitChild(System.Guid parentId, System.String typeName, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> predicate, System.TimeSpan timeout) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitDescendant(System.Guid rootId, System.String typeName, System.Func<Ascon.Pilot.DataClasses.DObject, System.Boolean> match, System.TimeSpan? timeout = null, System.Int32 maxDepth = 4) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitAttribute(System.Guid id, System.String attribute, System.String expected, System.TimeSpan? timeout = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method WaitGone(System.Guid id, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Data.PilotServerClient | method SetAttributesAndWait(System.Guid id, System.Collections.Generic.IDictionary<System.String, System.Object> attributes, System.TimeSpan? timeout = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method SetStateAndWait(System.Guid id, System.String stateAttribute, System.Guid stateId, System.TimeSpan? timeout = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method AddFileAndWait(System.Guid id, System.String filePath, System.TimeSpan? timeout = null) : Ascon.Pilot.DataClasses.DObject
+PilotUITesting.Data.PilotServerClient | method MoveToRecycleBinAndWait(System.Guid id, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Data.PilotServerClient | method DeletePermanently(System.Guid id, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Data.PilotServerClient | method TaskAttachments(System.Guid id) : System.Collections.Generic.IReadOnlyList<System.Guid>
+PilotUITesting.Data.PilotServerClient | method AncestorIds(System.Guid id) : System.Collections.Generic.IReadOnlyList<System.Guid>
+PilotUITesting.Data.PilotServerClient | method ActualSnapshotCreated(System.Guid id) : System.DateTime
+PilotUITesting.Data.PilotServerClient | method ReloadMetadata() : System.Void
+PilotUITesting.Data.PilotServerClient | static method AttrOrNull(Ascon.Pilot.DataClasses.DObject obj, System.String name) : System.String
+PilotUITesting.Data.PilotServerClient | method StateIdByName(System.String name) : System.Guid
+PilotUITesting.Data.PilotServerClient | property ReconnectCount : System.Int32 { get; }
+PilotUITesting.Data.PilotServerClient | property Metadata : Ascon.Pilot.DataClasses.DMetadata { get; }
+PilotUITesting.Data.PilotServerClient | property DatabaseInfo : Ascon.Pilot.DataClasses.DDatabaseInfo { get; }
+PilotUITesting.Data.PilotServerClient | property ServerApi : Ascon.Pilot.Server.Api.Contracts.IServerApi { get; }
+PilotUITesting.Data.PilotServerClient | property CurrentPersonId : System.Int32 { get; }
+PilotUITesting.Data.PilotServerClient | property DefaultDataTimeout : System.TimeSpan { get; set; }
+PilotUITesting.Data.PilotServerClient | property Storage : Ascon.Pilot.DataModifier.FileSystemStorageProvider { get; }
+PilotUITesting.Data.PilotServerClient | property Errors : System.Collections.Generic.IReadOnlyList<PilotUITesting.Data.ServerError> { get; }
+PilotUITesting.Data.PilotServerClient | static readonly field RootId : System.Guid
+PilotUITesting.Data.PilotTestFiles | static class
+PilotUITesting.Data.PilotTestFiles | static method Pdf(System.String text, System.String fileName = null) : System.String
+PilotUITesting.Data.PilotTestFiles | static method MinimalPdf(System.String text) : System.Byte[]
+PilotUITesting.Data.PilotTestFiles | static method WaitWritten(System.String path, System.TimeSpan? timeout = null) : System.Void
+PilotUITesting.Data.SandboxCleanup | enum
+PilotUITesting.Data.SandboxCleanup | enum DeletePermanently = 0
+PilotUITesting.Data.SandboxCleanup | enum RecycleBin = 1
+PilotUITesting.Data.SandboxCleanup | enum Keep = 2
+PilotUITesting.Data.ServerChangeRejectedException | class : System.Exception
+PilotUITesting.Data.ServerChangeRejectedException | ctor(System.String what, PilotUITesting.Data.ServerError error)
+PilotUITesting.Data.ServerChangeRejectedException | property What : System.String { get; }
+PilotUITesting.Data.ServerChangeRejectedException | property Error : PilotUITesting.Data.ServerError { get; }
+PilotUITesting.Data.ServerError | class
+PilotUITesting.Data.ServerError | method ToString() : System.String
+PilotUITesting.Data.ServerError | property Identity : System.Guid { get; }
+PilotUITesting.Data.ServerError | property TimeUtc : System.DateTime { get; }
+PilotUITesting.Data.ServerError | property Message : System.String { get; }
+PilotUITesting.NUnit.CatalogAssert | static class
+PilotUITesting.NUnit.CatalogAssert | static method Check(FlaUI.Core.AutomationElements.AutomationElement scope, System.Type section, params System.String[] ignore) : PilotUITesting.NUnit.CatalogReport
+PilotUITesting.NUnit.CatalogAssert | static method AllPresent(FlaUI.Core.AutomationElements.AutomationElement scope, System.Type section, params System.String[] ignore) : PilotUITesting.NUnit.CatalogReport
+PilotUITesting.NUnit.CatalogReport | class
+PilotUITesting.NUnit.CatalogReport | method ToString() : System.String
+PilotUITesting.NUnit.CatalogReport | property Section : System.String { get; }
+PilotUITesting.NUnit.CatalogReport | property Found : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.NUnit.CatalogReport | property Missing : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.NUnit.CatalogReport | property Skipped : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.NUnit.CatalogReport | property Unknown : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.NUnit.PilotUiTestBase | class
+PilotUITesting.NUnit.PilotUiTestBase | protected ctor()
+PilotUITesting.NUnit.PilotUiTestBase | method PilotOneTimeSetUp() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | method PilotOneTimeTearDown() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | method PilotSetUp() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | method PilotTearDown() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method OnBeforeTests() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method OnAfterTests() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method OpenModuleTab() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method CloseModuleTab() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method Step(System.String text) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method RequireTypes(params System.String[] typeNames) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method OpenExplorer(PilotUITesting.NUnit.TabLifetime lifetime = Fixture) : PilotUITesting.Client.PilotExplorer
+PilotUITesting.NUnit.PilotUiTestBase | protected method Track<T>(T page, PilotUITesting.NUnit.TabLifetime lifetime = Test) : T
+PilotUITesting.NUnit.PilotUiTestBase | protected method ServerAs(System.String accountName) : PilotUITesting.Data.PilotServerClient
+PilotUITesting.NUnit.PilotUiTestBase | protected method AfterTest(System.String description, System.Action restore) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method AfterTests(System.String description, System.Action restore) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method RequireClientRestart(System.String reason) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method PluginLogLines(System.Func<PilotUITesting.PluginLogLine, System.Boolean> match = null) : System.Collections.Generic.IReadOnlyList<PilotUITesting.PluginLogLine>
+PilotUITesting.NUnit.PilotUiTestBase | protected method WaitPluginLog(System.Func<PilotUITesting.PluginLogLine, System.Boolean> match, System.TimeSpan? timeout = null, System.String description = null) : PilotUITesting.PluginLogLine
+PilotUITesting.NUnit.PilotUiTestBase | protected method RestoreFileAfterTests(System.String path) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method RestartClient() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method AssertNoPilotErrors() : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method AssertNoPluginErrors(System.Func<PilotUITesting.PluginLogLine, System.Boolean> isError = null) : System.Void
+PilotUITesting.NUnit.PilotUiTestBase | protected method NewOutputPath(System.String fileName) : System.String
+PilotUITesting.NUnit.PilotUiTestBase | protected property Config : PilotUITesting.PilotUiConfig { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property App : PilotUITesting.Client.PilotApp { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property Server : PilotUITesting.Data.PilotServerClient { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property ModuleButtonTitle : System.String { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property Timeout : System.TimeSpan { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property DataTimeout : System.TimeSpan { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property TestData : PilotUITesting.Data.PilotSandbox { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property ResetUiBeforeEachTest : System.Boolean { get; }
+PilotUITesting.NUnit.PilotUiTestBase | protected property DialogCancelButtonIds : System.String[] { get; }
+PilotUITesting.NUnit.TabLifetime | enum
+PilotUITesting.NUnit.TabLifetime | enum Test = 0
+PilotUITesting.NUnit.TabLifetime | enum Fixture = 1
+PilotUITesting.NUnit.TestArtifacts | class
+PilotUITesting.NUnit.TestArtifacts | static method For(PilotUITesting.PilotUiConfig config, System.String className, System.String testName, System.DateTime stamp) : PilotUITesting.NUnit.TestArtifacts
+PilotUITesting.NUnit.TestArtifacts | method PathOf(System.String fileName) : System.String
+PilotUITesting.NUnit.TestArtifacts | method WriteText(System.String fileName, System.String text, System.String description) : System.String
+PilotUITesting.NUnit.TestArtifacts | method Screen(System.String fileName = "screen.png") : System.String
+PilotUITesting.NUnit.TestArtifacts | method Windows(PilotUITesting.Client.PilotApp app, System.String fileName = "windows.txt") : System.String
+PilotUITesting.NUnit.TestArtifacts | static method Prune(PilotUITesting.PilotUiConfig config) : System.Void
+PilotUITesting.NUnit.TestArtifacts | property Folder : System.String { get; }
+PilotUITesting.PilotAccount | class
+PilotUITesting.PilotAccount | ctor()
+PilotUITesting.PilotAccount | property Login : System.String { get; set; }
+PilotUITesting.PilotAccount | property Password : System.String { get; set; }
+PilotUITesting.PilotClientKind | enum
+PilotUITesting.PilotClientKind | enum PilotIce = 0
+PilotUITesting.PilotClientKind | enum PilotBim = 1
+PilotUITesting.PilotLog | static class
+PilotUITesting.PilotLog | static method Step(System.String text) : System.Void
+PilotUITesting.PilotLog | static method Warn(System.String text) : System.Void
+PilotUITesting.PilotLog | static method Recent(System.Int32 count = 20) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.PilotLog | static method Dump() : System.String
+PilotUITesting.PilotLog | static method Action(System.String text) : System.Void
+PilotUITesting.PilotLog | static property Sink : System.Action<System.String> { get; set; }
+PilotUITesting.PilotUiConfig | class
+PilotUITesting.PilotUiConfig | ctor()
+PilotUITesting.PilotUiConfig | static method Load(System.String baseDirectory = null) : PilotUITesting.PilotUiConfig
+PilotUITesting.PilotUiConfig | method Validate() : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.PilotUiConfig | method Describe() : System.String
+PilotUITesting.PilotUiConfig | property Client : PilotUITesting.PilotClientKind { get; set; }
+PilotUITesting.PilotUiConfig | property ExePath : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property ServerUrl : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property Login : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property Password : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property ApiLogin : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property ApiPassword : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property Accounts : System.Collections.Generic.Dictionary<System.String, PilotUITesting.PilotAccount> { get; set; }
+PilotUITesting.PilotUiConfig | property AdminLogin : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property AdminPassword : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property KeepClientOpen : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property AttachToRunning : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property ArtifactsDir : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property DefaultTimeoutSeconds : System.Int32 { get; set; }
+PilotUITesting.PilotUiConfig | property ClientStartTimeoutSeconds : System.Int32 { get; set; }
+PilotUITesting.PilotUiConfig | property DataTimeoutSeconds : System.Int32 { get; set; }
+PilotUITesting.PilotUiConfig | property ClientUser : System.String { get; set; }
+PilotUITesting.PilotUiConfig | property DpiAware : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property ResetUiBeforeEachTest : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property UnsentChanges : PilotUITesting.UnsentChangesPolicy { get; set; }
+PilotUITesting.PilotUiConfig | property RestartAfterModuleView : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property RestartOnAttach : System.Boolean { get; set; }
+PilotUITesting.PilotUiConfig | property PluginLogs : System.String[] { get; set; }
+PilotUITesting.PilotUiConfig | property ArtifactsKeep : System.Int32 { get; set; }
+PilotUITesting.PilotUiConfig | property Sandbox : PilotUITesting.Data.PilotSandboxConfig { get; set; }
+PilotUITesting.PilotUiConfig | property UnknownKeys : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.PilotUiConfig | property Sources : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.PilotUiConfig | property ResolvedExePath : System.String { get; }
+PilotUITesting.PilotUiConfig | property ProcessName : System.String { get; }
+PilotUITesting.PilotUiConfig | property ResolvedApiLogin : System.String { get; }
+PilotUITesting.PilotUiConfig | property ResolvedApiPassword : System.String { get; }
+PilotUITesting.PilotUiConfig | property ResolvedArtifactsDir : System.String { get; }
+PilotUITesting.PilotUiConfig | property DefaultTimeout : System.TimeSpan { get; }
+PilotUITesting.PilotUiConfig | property DataTimeout : System.TimeSpan { get; }
+PilotUITesting.PilotUiConfig | property ClientStartTimeout : System.TimeSpan { get; }
+PilotUITesting.PilotUiConfig | property DatabaseName : System.String { get; }
+PilotUITesting.PilotUiConfig | const field DefaultBimExe : System.String = "C:\Program Files\ASCON\Pilot-BIM\Ascon.Pilot.PilotBIM.exe"
+PilotUITesting.PilotUiConfig | const field DefaultIceExe : System.String = "C:\Program Files\ASCON\Pilot-ICE Enterprise\Ascon.Pilot.PilotEnterprise.exe"
+PilotUITesting.PilotUiConfig | const field FileName : System.String = "pilot-ui-tests.json"
+PilotUITesting.PilotUiConfig | const field LocalFileName : System.String = "pilot-ui-tests.local.json"
+PilotUITesting.PluginLogLine | class
+PilotUITesting.PluginLogLine | method ToString() : System.String
+PilotUITesting.PluginLogLine | property Log : System.String { get; }
+PilotUITesting.PluginLogLine | property Text : System.String { get; }
+PilotUITesting.PluginLogLine | property Level : System.String { get; }
+PilotUITesting.PluginLogWatch | class
+PilotUITesting.PluginLogWatch | ctor(System.String logsDirectory, System.Collections.Generic.IEnumerable<System.String> logNames)
+PilotUITesting.PluginLogWatch | static method DefaultDirectory(PilotUITesting.PilotClientKind client) : System.String
+PilotUITesting.PluginLogWatch | method Mark() : System.Void
+PilotUITesting.PluginLogWatch | method NewLines() : System.Collections.Generic.IReadOnlyList<PilotUITesting.PluginLogLine>
+PilotUITesting.PluginLogWatch | method WaitLine(System.Func<PilotUITesting.PluginLogLine, System.Boolean> match, System.TimeSpan timeout, System.String description) : PilotUITesting.PluginLogLine
+PilotUITesting.PluginLogWatch | method LastPluginVersion(System.String logName) : System.String
+PilotUITesting.Uia.AmbiguousElementException | class : System.InvalidOperationException
+PilotUITesting.Uia.AmbiguousElementException | ctor(System.String what, System.Collections.Generic.IReadOnlyList<System.String> matches)
+PilotUITesting.Uia.AmbiguousElementException | property Matches : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Uia.AutomationElementExtensions | static class
+PilotUITesting.Uia.AutomationElementExtensions | static method FindDescendantBfs(FlaUI.Core.AutomationElements.AutomationElement root, System.Func<FlaUI.Core.AutomationElements.AutomationElement, System.Boolean> predicate, System.Int32 maxDepth = 60) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method FindDescendantsBfs(FlaUI.Core.AutomationElements.AutomationElement root, System.Func<FlaUI.Core.AutomationElements.AutomationElement, System.Boolean> predicate, System.Int32 maxDepth = 60) : System.Collections.Generic.List<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeChildren(FlaUI.Core.AutomationElements.AutomationElement element) : FlaUI.Core.AutomationElements.AutomationElement[]
+PilotUITesting.Uia.AutomationElementExtensions | static method ChildById(FlaUI.Core.AutomationElements.AutomationElement element, System.String automationId) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method ById(FlaUI.Core.AutomationElements.AutomationElement root, System.String automationId, System.TimeSpan timeout) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method ByName(FlaUI.Core.AutomationElements.AutomationElement root, System.String name, System.TimeSpan timeout) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method ByNameContains(FlaUI.Core.AutomationElements.AutomationElement root, System.String part, System.TimeSpan timeout) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method TryById(FlaUI.Core.AutomationElements.AutomationElement root, System.String automationId) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method TryByName(FlaUI.Core.AutomationElements.AutomationElement root, System.String name) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method TryByControlTypeAndName(FlaUI.Core.AutomationElements.AutomationElement root, FlaUI.Core.Definitions.ControlType type, System.String name) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeName(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeAutomationId(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeClassName(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeControlType(FlaUI.Core.AutomationElements.AutomationElement element) : FlaUI.Core.Definitions.ControlType
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeIsEnabled(FlaUI.Core.AutomationElements.AutomationElement element) : System.Boolean
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeIsOffscreen(FlaUI.Core.AutomationElements.AutomationElement element) : System.Boolean
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeHelpText(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeIsSelected(FlaUI.Core.AutomationElements.AutomationElement element) : System.Boolean
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeIsAvailable(FlaUI.Core.AutomationElements.AutomationElement element) : System.Boolean
+PilotUITesting.Uia.AutomationElementExtensions | static method Press(FlaUI.Core.AutomationElements.AutomationElement element) : System.Void
+PilotUITesting.Uia.AutomationElementExtensions | static method SelectItem(FlaUI.Core.AutomationElements.AutomationElement element) : System.Void
+PilotUITesting.Uia.AutomationElementExtensions | static method SetText(FlaUI.Core.AutomationElements.AutomationElement element, System.String text) : System.Void
+PilotUITesting.Uia.AutomationElementExtensions | static method Texts(FlaUI.Core.AutomationElements.AutomationElement element) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Uia.AutomationElementExtensions | static method Rows(FlaUI.Core.AutomationElements.AutomationElement list) : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Uia.AutomationElementExtensions | static method AllRows(FlaUI.Core.AutomationElements.AutomationElement list) : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Uia.AutomationElementExtensions | static method FindRowScrolling(FlaUI.Core.AutomationElements.AutomationElement list, System.Func<FlaUI.Core.AutomationElements.AutomationElement, System.Boolean> predicate) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method RowContaining(FlaUI.Core.AutomationElements.AutomationElement list, System.TimeSpan timeout, params System.String[] parts) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method TryRowContaining(FlaUI.Core.AutomationElements.AutomationElement list, params System.String[] parts) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method DumpTree(FlaUI.Core.AutomationElements.AutomationElement root, System.Int32 maxDepth = 60) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method ById(FlaUI.Core.AutomationElements.AutomationElement root, System.String automationId) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method ByName(FlaUI.Core.AutomationElements.AutomationElement root, System.String name) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method RowContaining(FlaUI.Core.AutomationElements.AutomationElement list, params System.String[] parts) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method Find(FlaUI.Core.AutomationElements.AutomationElement root, PilotUITesting.Uia.By selector, System.TimeSpan? timeout = null, System.String scope = null) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method TryFind(FlaUI.Core.AutomationElements.AutomationElement root, PilotUITesting.Uia.By selector) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.AutomationElementExtensions | static method FindAll(FlaUI.Core.AutomationElements.AutomationElement root, PilotUITesting.Uia.By selector, System.Int32 maxDepth = 60) : System.Collections.Generic.IReadOnlyList<FlaUI.Core.AutomationElements.AutomationElement>
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeItemStatus(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeItemType(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeValue(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeToggleState(FlaUI.Core.AutomationElements.AutomationElement element) : FlaUI.Core.Definitions.ToggleState?
+PilotUITesting.Uia.AutomationElementExtensions | static method SafeHasKeyboardFocus(FlaUI.Core.AutomationElements.AutomationElement element) : System.Boolean
+PilotUITesting.Uia.AutomationElementExtensions | static method DumpTree(FlaUI.Core.AutomationElements.AutomationElement root, System.Int32 maxDepth, System.Boolean details) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | static method Describe(FlaUI.Core.AutomationElements.AutomationElement element) : System.String
+PilotUITesting.Uia.AutomationElementExtensions | const field DefaultMaxDepth : System.Int32 = 60
+PilotUITesting.Uia.By | class
+PilotUITesting.Uia.By | static method Id(System.String automationId) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method IdPrefix(System.String prefix) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method Name(System.String name) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method NameStartsWith(System.String prefix) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method ClassName(System.String className) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method Type(FlaUI.Core.Definitions.ControlType type) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | static method Where(System.Func<PilotUITesting.Uia.ElementFacts, System.Boolean> predicate, System.String description) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | method And(PilotUITesting.Uia.By other) : PilotUITesting.Uia.By
+PilotUITesting.Uia.By | method Matches(PilotUITesting.Uia.ElementFacts facts) : System.Boolean
+PilotUITesting.Uia.By | method ToString() : System.String
+PilotUITesting.Uia.CheckInput | enum
+PilotUITesting.Uia.CheckInput | enum TogglePattern = 0
+PilotUITesting.Uia.CheckInput | enum MouseClick = 1
+PilotUITesting.Uia.ClientBusyException | class : PilotUITesting.Uia.PilotWaitTimeoutException
+PilotUITesting.Uia.ClientBusyException | ctor(System.String description, System.TimeSpan timeout, System.TimeSpan elapsed, System.Int32 busyFaults, System.Exception lastError)
+PilotUITesting.Uia.ClientBusyException | property BusyFaults : System.Int32 { get; }
+PilotUITesting.Uia.DpiStatus | class
+PilotUITesting.Uia.DpiStatus | method ToString() : System.String
+PilotUITesting.Uia.DpiStatus | property IsPerMonitor : System.Boolean { get; }
+PilotUITesting.Uia.DpiStatus | property SystemDpi : System.Int32 { get; }
+PilotUITesting.Uia.DpiStatus | property How : System.String { get; }
+PilotUITesting.Uia.DpiStatus | property MouseCoordinatesMatch : System.Boolean { get; }
+PilotUITesting.Uia.ElementFacts | class
+PilotUITesting.Uia.ElementFacts | property Element : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Uia.ElementFacts | property AutomationId : System.String { get; }
+PilotUITesting.Uia.ElementFacts | property Name : System.String { get; }
+PilotUITesting.Uia.ElementFacts | property ClassName : System.String { get; }
+PilotUITesting.Uia.ElementFacts | property ControlType : FlaUI.Core.Definitions.ControlType { get; }
+PilotUITesting.Uia.ElementFacts | property HelpText : System.String { get; }
+PilotUITesting.Uia.ElementFacts | property ItemStatus : System.String { get; }
+PilotUITesting.Uia.ElementNotFoundException | class : PilotUITesting.Uia.PilotWaitTimeoutException
+PilotUITesting.Uia.ElementNotFoundException | ctor(System.String scope, System.String selector, System.TimeSpan timeout, System.TimeSpan elapsed, System.Collections.Generic.IReadOnlyList<System.String> idsInScope, System.Exception lastError)
+PilotUITesting.Uia.ElementNotFoundException | property Scope : System.String { get; }
+PilotUITesting.Uia.ElementNotFoundException | property Selector : System.String { get; }
+PilotUITesting.Uia.ElementNotFoundException | property IdsInScope : System.Collections.Generic.IReadOnlyList<System.String> { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | class : System.TimeoutException
+PilotUITesting.Uia.PilotWaitTimeoutException | ctor(System.String description, System.TimeSpan timeout, System.TimeSpan elapsed, System.String lastObservation, System.Exception lastError)
+PilotUITesting.Uia.PilotWaitTimeoutException | protected ctor(System.String description, System.TimeSpan timeout, System.TimeSpan elapsed, System.String lastObservation, System.Exception lastError, System.String details)
+PilotUITesting.Uia.PilotWaitTimeoutException | property Description : System.String { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | property Timeout : System.TimeSpan { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | property Elapsed : System.TimeSpan { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | property LastObservation : System.String { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | property Diagnostics : System.String { get; }
+PilotUITesting.Uia.PilotWaitTimeoutException | property Message : System.String { get; }
+PilotUITesting.Uia.UiActions | static class
+PilotUITesting.Uia.UiActions | static method Press(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method Click(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method DoubleClick(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method RightClick(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method Select(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method Expand(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method Keys(FlaUI.Core.AutomationElements.AutomationElement focusTarget, System.String description, params FlaUI.Core.WindowsAPI.VirtualKeyShort[] keys) : System.Void
+PilotUITesting.Uia.UiActions | static method TypeText(FlaUI.Core.AutomationElements.AutomationElement focusTarget, System.String text, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method SetValue(FlaUI.Core.AutomationElements.AutomationElement element, System.String value, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method SetChecked(FlaUI.Core.AutomationElements.AutomationElement element, System.Boolean value, PilotUITesting.Uia.CheckInput input, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method Choose(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement combo, System.String itemCaption, System.String description) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Uia.UiActions | static method ComboItems(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement combo, System.String description) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Uia.UiGrid | class
+PilotUITesting.Uia.UiGrid | ctor(System.Func<FlaUI.Core.AutomationElements.AutomationElement> root, System.String description)
+PilotUITesting.Uia.UiGrid | method Columns() : System.Collections.Generic.IReadOnlyList<PilotUITesting.Uia.UiGridColumn>
+PilotUITesting.Uia.UiGrid | method Cell(System.Int32 row, System.String column) : System.String
+PilotUITesting.Uia.UiGrid | method Column(System.String column) : System.Collections.Generic.IReadOnlyList<System.String>
+PilotUITesting.Uia.UiGrid | method ReadAll(params System.String[] columns) : System.Collections.Generic.IReadOnlyList<System.Collections.Generic.IReadOnlyDictionary<System.String, System.String>>
+PilotUITesting.Uia.UiGrid | method FindRow(System.String column, System.String value) : System.Int32
+PilotUITesting.Uia.UiGrid | method CellElement(System.Int32 row, System.String column) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.UiGrid | method RowElement(System.Int32 row) : FlaUI.Core.AutomationElements.AutomationElement
+PilotUITesting.Uia.UiGrid | method SelectRow(System.Int32 row) : System.Void
+PilotUITesting.Uia.UiGrid | method ToString() : System.String
+PilotUITesting.Uia.UiGrid | property Root : FlaUI.Core.AutomationElements.AutomationElement { get; }
+PilotUITesting.Uia.UiGrid | property RowCount : System.Int32 { get; }
+PilotUITesting.Uia.UiGridColumn | class
+PilotUITesting.Uia.UiGridColumn | method ToString() : System.String
+PilotUITesting.Uia.UiGridColumn | property FieldName : System.String { get; }
+PilotUITesting.Uia.UiGridColumn | property Caption : System.String { get; }
+PilotUITesting.Uia.ValueNotAppliedException | class : System.InvalidOperationException
+PilotUITesting.Uia.ValueNotAppliedException | ctor(System.String target, System.String expected, System.String actual)
+PilotUITesting.Uia.ValueNotAppliedException | property Target : System.String { get; }
+PilotUITesting.Uia.ValueNotAppliedException | property Expected : System.String { get; }
+PilotUITesting.Uia.ValueNotAppliedException | property Actual : System.String { get; }
+PilotUITesting.Uia.Wait | static class
+PilotUITesting.Uia.Wait | static method Until(System.Func<System.Boolean> condition, System.TimeSpan timeout, System.String description) : System.Void
+PilotUITesting.Uia.Wait | static method For<T>(System.Func<T> producer, System.TimeSpan timeout, System.String description) : T
+PilotUITesting.Uia.Wait | static method TryUntil(System.Func<System.Boolean> condition, System.TimeSpan timeout) : System.Boolean
+PilotUITesting.Uia.Wait | static method Until(System.Func<System.Boolean> condition, System.String description = null) : System.Void
+PilotUITesting.Uia.Wait | static method For<T>(System.Func<T> producer, System.String description = null) : T
+PilotUITesting.Uia.Wait | static method Stays(System.Func<System.Boolean> condition, System.TimeSpan duration, System.String description = null) : System.Boolean
+PilotUITesting.Uia.Wait | static method RecordUntil<T>(System.Func<T> sample, System.Func<T, System.Boolean> done, System.TimeSpan timeout, System.TimeSpan? interval = null, System.String description = null) : System.Collections.Generic.IReadOnlyList<T>
+PilotUITesting.Uia.Wait | static method IsUiBusy(System.Exception ex) : System.Boolean
+PilotUITesting.Uia.Wait | static method Retry<T>(System.Func<T> call) : T
+PilotUITesting.Uia.Wait | static method Retry(System.Action call) : System.Void
+PilotUITesting.Uia.Wait | static property PollInterval : System.TimeSpan { get; set; }
+PilotUITesting.Uia.Wait | static property UiBusyTimeout : System.TimeSpan { get; set; }
+PilotUITesting.Uia.Wait | static property DefaultTimeout : System.TimeSpan { get; set; }
+PilotUITesting.UnsentChangesPolicy | enum
+PilotUITesting.UnsentChangesPolicy | enum Fail = 0
+PilotUITesting.UnsentChangesPolicy | enum Discard = 1

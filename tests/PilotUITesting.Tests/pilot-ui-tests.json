@@ -1,0 +1,17 @@
+{
+  // Контрактные тесты каталога ([Explicit], категория PilotContract): живой клиент Pilot-ICE Enterprise и стенд.
+  "client": "PilotIce",
+  "serverUrl": "http://localhost:5545/database",
+  "clientUser": "bot2 (bot)",
+  "attachToRunning": true,
+  "keepClientOpen": true,
+  "dpiAware": true,
+  "resetUiBeforeEachTest": true,
+  "restartOnAttach": true,
+  "sandbox": {
+    "rootType": "support", "rootTitleAttribute": "support_name",
+    "folderType": "support_folder", "folderTitleAttribute": "support_folder_name",
+    "documentType": "support_document", "documentTitleAttribute": "help_document_name",
+    "namePrefix": "UI PUIT contract"
+  }
+}

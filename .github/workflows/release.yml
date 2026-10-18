@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - uses: actions/cache@v6
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-release-${{ hashFiles('**/*.csproj', 'Directory.Build.props') }}
+          restore-keys: ${{ runner.os }}-nuget-release-
+
+      # Тег должен совпадать с Version в Directory.Build.props, иначе в релиз уйдут файлы другой версии
+      - name: Check version
+        shell: pwsh
+        run: |
+          $props = [xml](Get-Content -LiteralPath Directory.Build.props -Raw)
+          $version = $props.SelectSingleNode('/Project/PropertyGroup/Version').InnerText
+          $tag = $env:GITHUB_REF_NAME
+          if ($tag -ne "v$version") { throw "Тег $tag не совпадает с Version $version в Directory.Build.props" }
+
+      - name: Build
+        run: dotnet build PilotTestingTools.sln -c Release
+
+      - name: Test
+        run: dotnet test PilotTestingTools.sln -c Release --no-build
+
+      - name: Pack
+        shell: pwsh
+        run: ./tools/pack-release.ps1
+
+      # Черновик с пометкой pre-release: публикует его человек после проверки
+      - name: Create draft release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $version = $tag.TrimStart('v')
+          $changelog = Get-Content -LiteralPath CHANGELOG.md -Encoding UTF8
+          $start = [array]::FindIndex($changelog, [Predicate[string]] { param($l) $l.StartsWith("## [$version]") })
+          if ($start -lt 0) { throw "В CHANGELOG.md нет раздела версии $version" }
+          $notes = @()
+          for ($i = $start + 1; $i -lt $changelog.Count -and -not $changelog[$i].StartsWith('## [') -and $changelog[$i] -notmatch '^\[[^\]]+\]: '; $i++) { $notes += $changelog[$i] }
+          $notes += ''
+          $notes += '### Установка'
+          $notes += ''
+          $notes += "Плагин-хост: распакуйте PilotTestHost-Plugin-$version.zip в ``%LocalAppData%\ASCON\<клиент>\Development\PilotTestHost\`` (клиент: Pilot-ICE Enterprise или Pilot-BIM). Консольный запуск: PilotTestHost-Cli-$version.zip, нужен .NET 8 Runtime. Пакеты NuGet PilotTestHost.Sdk и PilotUITesting приложены к релизу и публикуются в nuget.org вручную."
+          $notes | Set-Content -LiteralPath release-notes.md -Encoding UTF8
+          $files = @(Get-ChildItem artifacts -File | ForEach-Object { $_.FullName })
+          gh release create $tag --draft --prerelease --title $tag --notes-file release-notes.md @files
+          if ($LASTEXITCODE -ne 0) { throw "gh release create завершился с кодом $LASTEXITCODE" }

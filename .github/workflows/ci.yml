@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - uses: actions/cache@v6
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', 'Directory.Build.props') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      # Release: Debug-сборка плагина-хоста копирует файлы в папки клиентов Pilot
+      - name: Build
+        run: dotnet build PilotTestingTools.sln -c Release
+
+      # Контрактные тесты требуют живой клиент Pilot и помечены [Explicit], в CI они пропускаются
+      - name: Test
+        run: dotnet test PilotTestingTools.sln -c Release --no-build
