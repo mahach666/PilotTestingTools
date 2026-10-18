@@ -47,7 +47,7 @@ UI-тесты проверялись вживую на Pilot-ICE Enterprise. Д�
 
 ## Установка
 
-Пакеты NuGet: `PilotTestHost.Sdk` (для проекта с тестами внутри клиента) и `PilotUITesting` (для проекта UI-тестов). Публикуются вручную, порядок описан в [RELEASING.md](RELEASING.md).
+Пакеты NuGet: `PilotTestHost.Sdk` (для проекта с тестами внутри клиента) и `PilotUITesting` (для проекта UI-тестов). Публикует workflow выпуска по тегу, порядок описан в [RELEASING.md](RELEASING.md).
 
 Архивы релиза на странице Releases:
 

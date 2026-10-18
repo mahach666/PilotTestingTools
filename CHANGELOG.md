@@ -31,7 +31,7 @@ PilotUITesting, UI-тесты снаружи клиента:
 Выпуск:
 
 - Пакеты NuGet `PilotTestHost.Sdk` и `PilotUITesting` с XML-документацией, символами (snupkg) и SourceLink.
-- Архивы плагина-хоста, CLI и инспектора, `SHA256SUMS.txt`. Сборку выполняет `tools/pack-release.ps1`, по тегу `v*` её запускает GitHub Actions.
+- Архивы плагина-хоста, CLI и инспектора, `SHA256SUMS.txt`. Сборку выполняет `tools/pack-release.ps1`, по тегу `v*` её запускает GitHub Actions, он же публикует пакеты в nuget.org через Trusted Publishing.
 
 ### Изменено
 

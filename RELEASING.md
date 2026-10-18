@@ -19,7 +19,7 @@
    ```
 
 5. Workflow [release.yml](.github/workflows/release.yml) по тегу `v*` проверит, что версия тега совпадает с `Version`, соберёт и проверит решение, подготовит те же файлы и создаст на GitHub черновик релиза с пометкой pre-release. Описание берётся из раздела версии в `CHANGELOG.md`. Проверьте черновик и опубликуйте его.
-6. Пакеты в nuget.org отправляются вручную (нужен ключ API):
+6. Там же workflow отправляет пакеты в nuget.org через Trusted Publishing: на nuget.org настроена политика для репозитория `mahach666/PilotTestingTools` и файла `release.yml`, ключ API не хранится. Политика для приватного репозитория первое время действует временно, её нужно успеть использовать первым выпуском. Если публикация из workflow не прошла, отправьте пакеты вручную (нужен ключ API):
 
    ```powershell
    dotnet nuget push artifacts/PilotTestHost.Sdk.0.2.0.nupkg --source https://api.nuget.org/v3/index.json --api-key <ключ>

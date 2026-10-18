@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write # Trusted Publishing nuget.org: временный ключ API по токену OIDC, секрет не хранится
 
 jobs:
   release:
@@ -61,8 +62,24 @@ jobs:
           $notes += ''
           $notes += '### Установка'
           $notes += ''
-          $notes += "Плагин-хост: распакуйте PilotTestHost-Plugin-$version.zip в ``%LocalAppData%\ASCON\<клиент>\Development\PilotTestHost\`` (клиент: Pilot-ICE Enterprise или Pilot-BIM). Консольный запуск: PilotTestHost-Cli-$version.zip, нужен .NET 8 Runtime. Пакеты NuGet PilotTestHost.Sdk и PilotUITesting приложены к релизу и публикуются в nuget.org вручную."
+          $notes += "Плагин-хост: распакуйте PilotTestHost-Plugin-$version.zip в ``%LocalAppData%\ASCON\<клиент>\Development\PilotTestHost\`` (клиент: Pilot-ICE Enterprise или Pilot-BIM). Консольный запуск: PilotTestHost-Cli-$version.zip, нужен .NET 8 Runtime. Пакеты NuGet PilotTestHost.Sdk и PilotUITesting приложены к релизу и публикуются в nuget.org этим же workflow."
           $notes | Set-Content -LiteralPath release-notes.md -Encoding UTF8
           $files = @(Get-ChildItem artifacts -File | ForEach-Object { $_.FullName })
           gh release create $tag --draft --prerelease --title $tag --notes-file release-notes.md @files
           if ($LASTEXITCODE -ne 0) { throw "gh release create завершился с кодом $LASTEXITCODE" }
+
+      # Политика Trusted Publishing на nuget.org привязана к этому репозиторию и файлу release.yml.
+      # Символы .snupkg отправляются вместе с пакетом. Публикация необратима: версию можно только скрыть.
+      - name: NuGet login
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: mahach
+
+      - name: Push packages to nuget.org
+        shell: pwsh
+        run: |
+          foreach ($pkg in Get-ChildItem artifacts -Filter *.nupkg) {
+            dotnet nuget push $pkg.FullName --source https://api.nuget.org/v3/index.json --api-key '${{ steps.nuget-login.outputs.NUGET_API_KEY }}' --skip-duplicate
+            if ($LASTEXITCODE -ne 0) { throw "dotnet nuget push $($pkg.Name) завершился с кодом $LASTEXITCODE" }
+          }
