@@ -1,0 +1,31 @@
+<Project>
+
+  <!--
+    Деплой тестовой сборки в подпапку Tests\ плагина-хоста PilotTestHost: после сборки в Debug сборки из выходной папки
+    копируются в те клиенты (Pilot-ICE Enterprise, Pilot-BIM), где хост установлен. Сборки Pilot SDK и PilotTestHost.Sdk
+    не копируются: их даёт клиент и хост.
+    Отключить: <PilotTestHostDeploy>false</PilotTestHostDeploy>; включить в другой конфигурации - true.
+  -->
+  <PropertyGroup>
+    <PilotTestHostDeploy Condition="'$(PilotTestHostDeploy)' == '' and '$(Configuration)' == 'Debug'">true</PilotTestHostDeploy>
+    <PilotTestHostDirIce Condition="'$(PilotTestHostDirIce)' == ''">$(LOCALAPPDATA)\ASCON\Pilot-ICE Enterprise\Development\PilotTestHost</PilotTestHostDirIce>
+    <PilotTestHostDirBim Condition="'$(PilotTestHostDirBim)' == ''">$(LOCALAPPDATA)\ASCON\Pilot-BIM\Development\PilotTestHost</PilotTestHostDirBim>
+  </PropertyGroup>
+
+  <Target Name="PilotTestHostDeployTests" AfterTargets="Build" Condition="'$(PilotTestHostDeploy)' == 'true'">
+    <ItemGroup>
+      <_PilotTestHostFiles Include="$(TargetDir)*.dll;$(TargetDir)*.pdb"
+                           Exclude="$(TargetDir)Ascon.Pilot.*;$(TargetDir)PilotTestHost.Sdk.*" />
+      <_PilotTestHostDirs Include="$(PilotTestHostDirIce)" Condition="Exists('$(PilotTestHostDirIce)')" />
+      <_PilotTestHostDirs Include="$(PilotTestHostDirBim)" Condition="Exists('$(PilotTestHostDirBim)')" />
+    </ItemGroup>
+
+    <Warning Condition="'@(_PilotTestHostDirs)' == ''"
+             Text="PilotTestHost не установлен ни в один клиент ($(PilotTestHostDirIce); $(PilotTestHostDirBim)): тесты не скопированы. Отключить деплой: PilotTestHostDeploy=false." />
+
+    <Copy SourceFiles="@(_PilotTestHostFiles)" DestinationFolder="%(_PilotTestHostDirs.Identity)\Tests" SkipUnchangedFiles="true"
+          Condition="'@(_PilotTestHostDirs)' != ''" />
+    <Message Importance="high" Condition="'@(_PilotTestHostDirs)' != ''" Text="PilotTestHost: тесты скопированы в %(_PilotTestHostDirs.Identity)\Tests" />
+  </Target>
+
+</Project>

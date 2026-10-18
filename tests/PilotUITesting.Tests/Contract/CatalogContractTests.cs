@@ -108,7 +108,11 @@ namespace PilotUITesting.Tests.Contract
             }
             finally
             {
-                main.Patterns.Window.Pattern.SetWindowVisualState(WindowVisualState.Maximized);
+                // узкое окно клиент запоминает при выходе, и в следующих прогонах заголовки вкладок уходят в переполнение
+                if (!Native.Maximize(main.Properties.NativeWindowHandle.Value))
+                {
+                    PilotLog.Warn("Главное окно клиента не развернулось после проверки переполнения: клиент запомнит узкое окно.");
+                }
             }
         }
     }

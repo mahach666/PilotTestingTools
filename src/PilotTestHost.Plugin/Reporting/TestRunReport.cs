@@ -7,7 +7,7 @@ namespace PilotTestHost.Plugin.Reporting
     public sealed class TestRunReport
     {
         public DateTime StartedAtUtc { get; } = DateTime.UtcNow;
-        public string Host { get; } = "PilotTestHost 0.1.0";
+        public string Host { get; } = "PilotTestHost " + typeof(TestRunReport).Assembly.GetName().Version.ToString(3);
         public List<TestResult> Results { get; } = new List<TestResult>();
 
         public int Total => Results.Count;

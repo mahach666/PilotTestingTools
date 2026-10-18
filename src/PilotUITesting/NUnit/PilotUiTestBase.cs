@@ -75,6 +75,11 @@ namespace PilotUITesting.NUnit
             {
                 PilotLog.Warn("конфигурация: " + problem);
             }
+            if (string.IsNullOrWhiteSpace(Config.ResolvedApiLogin))
+            {
+                throw new InvalidOperationException("Не задана учётная запись Server API: login и password (или apiLogin и apiPassword) в "
+                    + PilotUiConfig.LocalFileName + " рядом с тестами или переменные PILOT_UI_API_LOGIN и PILOT_UI_API_PASSWORD.");
+            }
             Server = PilotServerClient.Connect(Config.ServerUrl, Config.ResolvedApiLogin, Config.ResolvedApiPassword);
             Server.DefaultDataTimeout = Config.DataTimeout;
             App = PilotApp.StartOrAttach(Config);

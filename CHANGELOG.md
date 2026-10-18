@@ -4,6 +4,26 @@
 
 ## [Не выпущено]
 
+### Добавлено
+
+- `pilottest --login <сервер> <пользователь> <пароль>` и `PilotClientLogin.Save` записывают сохранённый вход клиента. Пароль шифруется методом самого клиента, открытый пароль клиент не принимает.
+- `pilottest` не запускается при уже запущенном клиенте, останавливает прогон по исключению входа в `client.log` (неверный пароль, другая версия сервера) и печатает последние строки журнала, если отчёт не появился.
+- `PilotApp.StartOrAttach` сразу бросает исключение с причиной, если клиент не войдёт в базу (процесс завершился, нет сохранённого входа, исключение входа в `client.log`), а не ждёт `clientStartTimeoutSeconds`.
+- `UiActions.TypeToFocused` и `UiActions.KeysToFocused`: ввод в элемент, который уже в фокусе (редактор ячейки).
+- Действия без чтения состояния для окон, которые дерево UI Automation перестаёт обновлять: `SetChecked(..., verify: false)` в `UiActions` и `PilotPage`, `PilotDialog.ClickAndWaitClosed(id, requireEnabled: false)`.
+- `UiGrid` работает с WPF DataGrid: ячейка по номеру колонки через `GridPattern.GetItem`, текст колонок-шаблонов из содержимого ячейки.
+- `ctx.Await(task)` в `PilotTestHost.Sdk`: ожидание задач Pilot SDK в тесте, который выполняется в UI-потоке клиента.
+- Пакет `PilotTestHost.Sdk` копирует тестовую сборку в `Tests\` плагина-хоста Pilot-ICE Enterprise и Pilot-BIM после сборки в Debug.
+
+### Изменено
+
+- У `login` и `password` в конфигурации UI-тестов больше нет значений по умолчанию. Учётную запись Server API задайте в `pilot-ui-tests.local.json` или в `PILOT_UI_API_LOGIN` и `PILOT_UI_API_PASSWORD`; без неё `PilotUiTestBase` сразу сообщает, где её задать.
+
+### Исправлено
+
+- Отчёт PilotTestHost указывал версию хоста 0.1.0 вместо версии сборки.
+- `UiGrid.Cell` возвращал пустую строку у колонок-шаблонов, где Value пуст.
+
 ## [0.2.0] - 2026-10-18
 
 Первый выпуск в общем репозитории. В нём объединены два проекта, которые раньше жили отдельно: PilotTestHost и PilotUITesting. Версия 0.2.0 продолжает нумерацию PilotUITesting.

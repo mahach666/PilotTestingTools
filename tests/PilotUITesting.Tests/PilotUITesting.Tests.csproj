@@ -25,6 +25,10 @@
     <None Update="pilot-ui-tests.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <!-- свой стенд и учётка Server API, вне git (*.local.json в .gitignore); нет файла - ничего не копируется -->
+    <None Update="pilot-ui-tests.local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <!-- снимок публичного API (0.1 и 0.2): из него ничего не должно пропадать (совместимость с существующими UI-тестами модулей) -->
     <None Update="PublicApi.approved.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

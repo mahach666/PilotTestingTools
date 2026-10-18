@@ -12,7 +12,7 @@ namespace PilotUITesting.Client
 {
     /// <summary>
     /// Вкладка клиента (AUIDTabItemLayoutDocument). Паттерна SelectionItem у вкладок нет: активность и тип содержимого читаются из
-    /// HelpText заголовка «IsActive:True; Content:AUIDDocumentsExplorer». Вкладки представлений модулей-HwndHost (реестр замечаний)
+    /// HelpText заголовка «IsActive:True; Content:AUIDDocumentsExplorer». Вкладки представлений модулей-HwndHost
     /// в UI Automation заголовка не имеют - для них <see cref="PilotModuleView"/>.
     /// </summary>
     public sealed class PilotTab

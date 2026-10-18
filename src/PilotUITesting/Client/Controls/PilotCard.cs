@@ -234,7 +234,7 @@ namespace PilotUITesting.Client
 
         /// <summary>
         /// Подпись пункта списка: текст дочернего TextBlock, если он есть, иначе Name. У пунктов с моделью-объектом Name - имя типа .NET,
-        /// а подпись только в тексте (проверено: ComboBoxEdit DevExpress в реестре, PluginUserState).
+        /// а подпись только в тексте (проверено: ComboBoxEdit DevExpress в окне модуля, PluginUserState).
         /// </summary>
         private static string ItemCaption(AutomationElement item)
         {

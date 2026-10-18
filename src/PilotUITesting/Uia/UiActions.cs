@@ -64,6 +64,21 @@ namespace PilotUITesting.Uia
             UiAct.TypeText(focusTarget, text, description);
         }
 
+        /// <summary>
+        /// Набрать текст в элемент, который уже в фокусе (редактор ячейки после двойного клика), без переноса фокуса:
+        /// <see cref="TypeText"/> ставит фокус на элемент и этим закрывает редактор. Активно должно быть окно клиента, иначе исключение до ввода.
+        /// </summary>
+        public static void TypeToFocused(Client.PilotApp app, string text, string description)
+        {
+            UiAct.TypeToForeground(app.Process.Id, text, description);
+        }
+
+        /// <summary>Нажать клавиши (одновременно) в элементе, который уже в фокусе, без переноса фокуса; например Ctrl+A, Tab, Enter в редакторе ячейки.</summary>
+        public static void KeysToFocused(Client.PilotApp app, string description, params VirtualKeyShort[] keys)
+        {
+            UiAct.KeysToForeground(app.Process.Id, description, keys);
+        }
+
         /// <summary>Записать значение через ValuePattern и прочитать обратно; не применилось - <see cref="ValueNotAppliedException"/>.</summary>
         public static void SetValue(AutomationElement element, string value, string description)
         {
@@ -76,6 +91,16 @@ namespace PilotUITesting.Uia
         public static void SetChecked(AutomationElement element, bool value, CheckInput input, string description)
         {
             UiChoice.SetChecked(element, value, input, description);
+        }
+
+        /// <summary>
+        /// То же; verify: false - состояние после действия не читается. Для окон, состояние которых дерево UI Automation перестаёт
+        /// обновлять (дочерние окна главного после вкладки модуля): флажок на экране отмечен, а в дереве остаётся «выкл».
+        /// Результат тогда проверяйте по данным (Server API). Состояние до действия читается: уже нужное - ничего не делает.
+        /// </summary>
+        public static void SetChecked(AutomationElement element, bool value, CheckInput input, string description, bool verify)
+        {
+            UiChoice.SetChecked(element, value, input, description, verify);
         }
 
         /// <summary>

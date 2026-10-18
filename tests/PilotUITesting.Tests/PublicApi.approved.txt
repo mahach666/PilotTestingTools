@@ -84,6 +84,8 @@ PilotUITesting.Client.PilotCard | method AddOrgUnit(System.String stage, System.
 PilotUITesting.Client.PilotCard | method OrgUnits(System.String stage) : System.Collections.Generic.IReadOnlyList<System.String>
 PilotUITesting.Client.PilotCard | method Describe() : System.String
 PilotUITesting.Client.PilotCard | method ToString() : System.String
+PilotUITesting.Client.PilotClientLogin | static class
+PilotUITesting.Client.PilotClientLogin | static method Save(PilotUITesting.PilotUiConfig config, System.String user, System.String password) : System.Void
 PilotUITesting.Client.PilotCommonSettingsWindow | class : PilotUITesting.Client.PilotDialog
 PilotUITesting.Client.PilotCommonSettingsWindow | static method AddItemId(System.String featureKey) : System.String
 PilotUITesting.Client.PilotCommonSettingsWindow | static method Open(PilotUITesting.Client.PilotApp app, System.TimeSpan? timeout = null) : PilotUITesting.Client.PilotCommonSettingsWindow
@@ -112,6 +114,7 @@ PilotUITesting.Client.PilotDialog | protected method ResolveRoot() : FlaUI.Core.
 PilotUITesting.Client.PilotDialog | method WaitClosed(System.TimeSpan? timeout = null) : System.Void
 PilotUITesting.Client.PilotDialog | method Close() : System.Void
 PilotUITesting.Client.PilotDialog | method ClickAndWaitClosed(System.String automationId) : System.Void
+PilotUITesting.Client.PilotDialog | method ClickAndWaitClosed(System.String automationId, System.Boolean requireEnabled) : System.Void
 PilotUITesting.Client.PilotDialog | method ClickTextAndWaitClosed(System.String caption) : System.Void
 PilotUITesting.Client.PilotDialog | property Window : FlaUI.Core.AutomationElements.Window { get; }
 PilotUITesting.Client.PilotDialog | property Title : System.String { get; }
@@ -992,6 +995,7 @@ PilotUITesting.Client.PilotPage | method SetValue(PilotUITesting.Uia.By selector
 PilotUITesting.Client.PilotPage | method IsEnabled(PilotUITesting.Uia.By selector) : System.Boolean
 PilotUITesting.Client.PilotPage | method IsChecked(PilotUITesting.Uia.By selector) : System.Boolean?
 PilotUITesting.Client.PilotPage | method SetChecked(PilotUITesting.Uia.By selector, System.Boolean value, PilotUITesting.Uia.CheckInput input = TogglePattern) : System.Void
+PilotUITesting.Client.PilotPage | method SetChecked(PilotUITesting.Uia.By selector, System.Boolean value, PilotUITesting.Uia.CheckInput input, System.Boolean verify) : System.Void
 PilotUITesting.Client.PilotPage | method ComboItems(PilotUITesting.Uia.By combo) : System.Collections.Generic.IReadOnlyList<System.String>
 PilotUITesting.Client.PilotPage | method Choose(PilotUITesting.Uia.By combo, System.String itemCaption) : System.Collections.Generic.IReadOnlyList<System.String>
 PilotUITesting.Client.PilotPage | method Texts() : System.Collections.Generic.IReadOnlyList<System.String>
@@ -1506,8 +1510,11 @@ PilotUITesting.Uia.UiActions | static method Select(FlaUI.Core.AutomationElement
 PilotUITesting.Uia.UiActions | static method Expand(FlaUI.Core.AutomationElements.AutomationElement element, System.String description) : System.Void
 PilotUITesting.Uia.UiActions | static method Keys(FlaUI.Core.AutomationElements.AutomationElement focusTarget, System.String description, params FlaUI.Core.WindowsAPI.VirtualKeyShort[] keys) : System.Void
 PilotUITesting.Uia.UiActions | static method TypeText(FlaUI.Core.AutomationElements.AutomationElement focusTarget, System.String text, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method TypeToFocused(PilotUITesting.Client.PilotApp app, System.String text, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method KeysToFocused(PilotUITesting.Client.PilotApp app, System.String description, params FlaUI.Core.WindowsAPI.VirtualKeyShort[] keys) : System.Void
 PilotUITesting.Uia.UiActions | static method SetValue(FlaUI.Core.AutomationElements.AutomationElement element, System.String value, System.String description) : System.Void
 PilotUITesting.Uia.UiActions | static method SetChecked(FlaUI.Core.AutomationElements.AutomationElement element, System.Boolean value, PilotUITesting.Uia.CheckInput input, System.String description) : System.Void
+PilotUITesting.Uia.UiActions | static method SetChecked(FlaUI.Core.AutomationElements.AutomationElement element, System.Boolean value, PilotUITesting.Uia.CheckInput input, System.String description, System.Boolean verify) : System.Void
 PilotUITesting.Uia.UiActions | static method Choose(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement combo, System.String itemCaption, System.String description) : System.Collections.Generic.IReadOnlyList<System.String>
 PilotUITesting.Uia.UiActions | static method ComboItems(PilotUITesting.Client.PilotApp app, FlaUI.Core.AutomationElements.AutomationElement combo, System.String description) : System.Collections.Generic.IReadOnlyList<System.String>
 PilotUITesting.Uia.UiGrid | class

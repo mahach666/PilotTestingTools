@@ -27,10 +27,12 @@ namespace PilotUITesting.Uia
     }
 
     /// <summary>
-    /// Таблица с GridPattern. Устройство проверено на DevExpress GridControl 20.1 (реестр замечаний, Pilot-ICE 26.11):
+    /// Таблица с GridPattern. Устройство проверено на DevExpress GridControl 20.1 (вкладка модуля, Pilot-ICE 26.11):
     /// заголовки - Header -> HeaderItem (Name = FieldName колонки, подпись - в дочернем Text; Invoke по заголовку сортирует - не вызывается);
     /// строки - DataItem; ячейка - элемент строки с AutomationId = FieldName, значение - ValuePattern.Value (показанный текст).
     /// SetValue по ячейке не вызывается: у DevExpress IsReadOnly = False, запись изменила бы данные.
+    /// WPF DataGrid (проверено на .NET Framework 4.8): HeaderItem с Name = заголовок, у ячеек нет AutomationId - ячейка по номеру колонки
+    /// (GridPattern.GetItem), у колонок-шаблонов Value пуст - текст берётся из содержимого. Скрытые колонки WPF DataGrid не поддержаны (исключение).
     /// </summary>
     public sealed class UiGrid
     {
@@ -61,11 +63,15 @@ namespace PilotUITesting.Uia
                 .ToList();
         }
 
-        /// <summary>Показанный текст ячейки. column - FieldName или подпись колонки.</summary>
+        /// <summary>
+        /// Показанный текст ячейки. column - FieldName или подпись колонки.
+        /// Value пуст (колонки-шаблоны WPF DataGrid) - тексты внутри ячейки через перевод строки.
+        /// </summary>
         public string Cell(int row, string column)
         {
             AutomationElement cell = CellElement(row, column);
-            return UiQuery.Read(() => cell.Patterns.Value.PatternOrDefault?.Value.ValueOrDefault ?? "", Wait.DefaultTimeout, $"ячейка [{row}, {column}]");
+            string value = UiQuery.Read(() => cell.Patterns.Value.PatternOrDefault?.Value.ValueOrDefault ?? "", Wait.DefaultTimeout, $"ячейка [{row}, {column}]");
+            return value.Length > 0 ? value : string.Join(Environment.NewLine, cell.Texts());
         }
 
         /// <summary>Значения колонки во всех строках (ровно RowCount).</summary>
@@ -112,18 +118,36 @@ namespace PilotUITesting.Uia
             return matches.Count == 0 ? -1 : matches[0];
         }
 
-        /// <summary>Элемент ячейки: в строке (DataItem) элемент с AutomationId = FieldName.</summary>
+        /// <summary>
+        /// Элемент ячейки: в строке (DataItem) элемент с AutomationId = FieldName (DevExpress). У ячеек строки нет AutomationId (WPF DataGrid) -
+        /// GridPattern.GetItem(row, номер колонки среди заголовков).
+        /// </summary>
         public AutomationElement CellElement(int row, string column)
         {
             string field = FieldName(column);
             AutomationElement rowElement = RowElement(row);
             UiQueryResult faults = new UiQueryResult();
-            AutomationElement cell = UiQuery.Children(rowElement, faults).FirstOrDefault(c => c.SafeAutomationId() == field);
-            if (cell == null)
+            IReadOnlyList<AutomationElement> cells = UiQuery.Children(rowElement, faults);
+            AutomationElement cell = cells.FirstOrDefault(c => c.SafeAutomationId() == field);
+            if (cell != null)
             {
-                throw new InvalidOperationException($"{_description}: в строке {row} нет ячейки {field} (колонка скрыта?). Ячейки: {string.Join(", ", rowElement.SafeChildren().Select(c => c.SafeAutomationId()))}");
+                return cell;
             }
-            return cell;
+            if (cells.All(c => c.SafeAutomationId().Length == 0))
+            {
+                // номер колонки - порядок заголовков; GetItem WPF DataGrid считает и скрытые колонки (заголовков у них нет), тогда номера разъезжаются
+                List<string> fields = Columns().Select(c => c.FieldName).ToList();
+                AutomationElement root = Root;
+                int columnCount = UiQuery.Read(() => GridPattern(root).ColumnCount.Value, Wait.DefaultTimeout, "число колонок " + _description);
+                if (columnCount != fields.Count)
+                {
+                    throw new InvalidOperationException($"{_description}: колонок в GridPattern {columnCount}, заголовков {fields.Count} (есть скрытые колонки) - ячейку по номеру колонки не найти.");
+                }
+                int index = fields.IndexOf(field);
+                return UiQuery.Read(() => GridPattern(root).GetItem(row, index), Wait.DefaultTimeout, $"ячейка [{row}, {index}]")
+                    ?? throw new InvalidOperationException($"{_description}: GridPattern.GetItem({row}, {index}) не вернул ячейку колонки {field}.");
+            }
+            throw new InvalidOperationException($"{_description}: в строке {row} нет ячейки {field} (колонка скрыта?). Ячейки: {string.Join(", ", rowElement.SafeChildren().Select(c => c.SafeAutomationId()))}");
         }
 
         /// <summary>

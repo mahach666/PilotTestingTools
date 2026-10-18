@@ -60,10 +60,13 @@ namespace PilotUITesting
         /// <summary>Адрес сервера с именем базы, например http://host:5545/database.</summary>
         public string ServerUrl { get; set; } = "http://localhost:5545/database";
 
-        /// <summary>Логин для входа в клиент и для Server API (тестовые данные).</summary>
-        public string Login { get; set; } = "mcp";
+        /// <summary>
+        /// Логин для Server API (тестовые данные). Значения по умолчанию нет: учётку держите вне git -
+        /// в pilot-ui-tests.local.json или в PILOT_UI_LOGIN / PILOT_UI_PASSWORD.
+        /// </summary>
+        public string Login { get; set; }
 
-        public string Password { get; set; } = "mcp";
+        public string Password { get; set; }
 
         /// <summary>Логин отдельной учётки для Server API; пусто - тот же, что <see cref="Login"/>.</summary>
         public string ApiLogin { get; set; }
@@ -95,12 +98,12 @@ namespace PilotUITesting
 
         public int ClientStartTimeoutSeconds { get; set; } = 120;
 
-        /// <summary>Сколько ждать данные сервера в интерфейсе и загрузку модулей (реестр замечаний грузится до 35 с).</summary>
+        /// <summary>Сколько ждать данные сервера в интерфейсе и загрузку модулей.</summary>
         public int DataTimeoutSeconds { get; set; } = 90;
 
         /// <summary>
         /// Под кем должен быть клиент: подпись кнопки профиля (ItemStatus AUIDCurrentUserProfile) - «отображаемое имя (должность)»,
-        /// например «bot2 (bot)». Задана - StartOrAttach сверяет точно и при расхождении падает. Логина клиент в UI Automation не показывает.
+        /// например «bot (Инженер)». Задана - StartOrAttach сверяет точно и при расхождении падает. Логина клиент в UI Automation не показывает.
         /// </summary>
         public string ClientUser { get; set; }
 
@@ -118,7 +121,7 @@ namespace PilotUITesting
         public UnsentChangesPolicy UnsentChanges { get; set; } = UnsentChangesPolicy.Fail;
 
         /// <summary>
-        /// После того как в сеансе открывалось представление модуля (вкладка-HwndHost, например реестр замечаний), дерево UI Automation
+        /// После того как в сеансе открывалось представление модуля (вкладка-HwndHost), дерево UI Automation
         /// главного окна перестаёт обновляться до перезапуска клиента. true - базовый класс перезапускает клиент перед следующим тестом.
         /// </summary>
         public bool RestartAfterModuleView { get; set; } = true;
@@ -151,6 +154,9 @@ namespace PilotUITesting
             : ExePath;
 
         public string ProcessName => Path.GetFileNameWithoutExtension(ResolvedExePath);
+
+        /// <summary>Папка клиента в %APPDATA%\ASCON (настройки, журналы).</summary>
+        internal string ProductFolder => Client == PilotClientKind.PilotIce ? "Pilot-ICE Enterprise" : "Pilot-BIM";
 
         public string ResolvedApiLogin => string.IsNullOrWhiteSpace(ApiLogin) ? Login : ApiLogin;
 

@@ -105,13 +105,22 @@ namespace PilotUITesting.Tests.Unit
         }
 
         [Test]
+        public void Api_account_has_no_default()
+        {
+            File.WriteAllText(Path.Combine(_dir, PilotUiConfig.FileName), @"{ ""serverUrl"": ""http://host/db"" }");
+            PilotUiConfig config = PilotUiConfig.Load(_dir);
+            Assert.That(config.ResolvedApiLogin, Is.Null);
+            Assert.That(config.ResolvedApiPassword, Is.Null);
+        }
+
+        [Test]
         public void Local_file_overrides_main_and_unknown_keys_are_reported()
         {
             File.WriteAllText(Path.Combine(_dir, PilotUiConfig.FileName), @"{ ""serverUrl"": ""http://host/db"", ""apiLogin"": ""x"", ""dataTimeoutSecnds"": 5,
   ""sandbox"": { ""rootType"": ""support"", ""rootTitleAttribute"": ""support_name"", ""cleanup"": ""Keep"" } }");
-            File.WriteAllText(Path.Combine(_dir, PilotUiConfig.LocalFileName), @"{ ""ApiLogin"": ""mcp"", ""apiPassword"": ""secret"" }");
+            File.WriteAllText(Path.Combine(_dir, PilotUiConfig.LocalFileName), @"{ ""ApiLogin"": ""api-user"", ""apiPassword"": ""secret"" }");
             PilotUiConfig config = PilotUiConfig.Load(_dir);
-            Assert.That(config.ResolvedApiLogin, Is.EqualTo("mcp"));
+            Assert.That(config.ResolvedApiLogin, Is.EqualTo("api-user"));
             Assert.That(config.ResolvedApiPassword, Is.EqualTo("secret"));
             Assert.That(config.UnknownKeys, Is.EquivalentTo(new[] { "dataTimeoutSecnds" }));
             Assert.That(config.Validate(), Has.Some.Contains("dataTimeoutSecnds"));

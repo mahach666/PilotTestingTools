@@ -78,6 +78,22 @@ namespace PilotUITesting.Client
             WaitClosed();
         }
 
+        /// <summary>
+        /// requireEnabled: false - кнопка нажимается кликом мышью без ожидания доступности: в окнах, состояние которых дерево
+        /// UI Automation перестаёт обновлять, кнопка в дереве остаётся «недоступна», хотя на экране доступна. Закрытие окна
+        /// проверяется по HWND и от дерева не зависит.
+        /// </summary>
+        public void ClickAndWaitClosed(string automationId, bool requireEnabled)
+        {
+            if (requireEnabled)
+            {
+                ClickAndWaitClosed(automationId);
+                return;
+            }
+            UiAct.Click(Find(automationId), $"{automationId} в «{Description}» (без проверки доступности)", FlaUI.Core.Input.MouseButton.Left, false);
+            WaitClosed();
+        }
+
         /// <summary>Нажать кнопку по подписи (кнопки окон модулей без AutomationId) и дождаться закрытия окна.</summary>
         public void ClickTextAndWaitClosed(string caption)
         {

@@ -372,7 +372,7 @@
                     public static string SortButton(bool descending) => "tbiAnnotationsSortButton" + (descending ? "Descending" : "Ascending");
                 }
 
-                /// <summary>Контекстное меню строки замечания (AnnotationsListContextMenuDirector.cs:17; AnnotationCommandsHelper.cs). Пункты модулей (IMenu&lt;DocumentAnnotationsListContext&gt;) - в конце, например mnu_moveRemark реестра (разведка).</summary>
+                /// <summary>Контекстное меню строки замечания (AnnotationsListContextMenuDirector.cs:17; AnnotationCommandsHelper.cs). Пункты модулей (IMenu&lt;DocumentAnnotationsListContext&gt;) - в конце (разведка).</summary>
                 public static class Menu
                 {
                     /// <summary>Name пуст (Menu) [Р] разведка; AnnotationsListContextMenuDirector.cs:17.</summary>

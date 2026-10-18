@@ -167,6 +167,14 @@ namespace PilotUITesting.Uia
             Keyboard.Type(text ?? "");
         }
 
+        /// <summary>Набрать текст, не меняя фокус (открытый редактор ячейки: перенос фокуса сбил бы правку); активно должно быть окно клиента.</summary>
+        internal static void TypeToForeground(int processId, string text, string description)
+        {
+            EnsureForeground(processId, null, description);
+            PilotLog.Action($"ввод «{text}» -> {description}");
+            Keyboard.Type(text ?? "");
+        }
+
         /// <summary>Нажать клавиши, не меняя фокус (он уже там, где нужно: например, в выделенной строке после перехода piloturi).</summary>
         internal static void KeysToForeground(int processId, string description, params VirtualKeyShort[] keys)
         {

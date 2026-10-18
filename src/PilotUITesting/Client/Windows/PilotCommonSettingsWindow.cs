@@ -242,7 +242,7 @@ namespace PilotUITesting.Client
             return PilotOrgUnitPickerWindow.Wait(App, timeout);
         }
 
-        /// <summary>Выбирает оргединицу по подписи в дереве оргструктуры (например «bot2 (bot)» или «bots»).</summary>
+        /// <summary>Выбирает оргединицу по подписи в дереве оргструктуры (например «bot (Инженер)» или «Отдел проектирования»).</summary>
         public void PickOrgUnit(string caption, TimeSpan? timeout = null)
         {
             PilotOrgUnitPickerWindow picker = OpenOrgUnitPicker(timeout);

@@ -6,6 +6,7 @@ using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Definitions;
 using FlaUI.UIA3;
+using PilotTestingTools.Shared;
 using PilotUITesting.Uia;
 
 namespace PilotUITesting.Client
@@ -30,6 +31,7 @@ namespace PilotUITesting.Client
 
         private readonly PilotUiConfig _config;
         private readonly bool _startedByUs;
+        private readonly ClientLogFile _clientLog;
         private UIA3Automation _automation;
         private Application _application;
 
@@ -39,11 +41,12 @@ namespace PilotUITesting.Client
 
         public Process Process { get; }
 
-        private PilotApp(PilotUiConfig config, Process process, bool startedByUs)
+        private PilotApp(PilotUiConfig config, Process process, bool startedByUs, ClientLogFile clientLog)
         {
             _config = config;
             Process = process;
             _startedByUs = startedByUs;
+            _clientLog = clientLog;
             _automation = new UIA3Automation();
             _application = Application.Attach(process);
             Windows = new PilotWindows(this);
@@ -66,7 +69,7 @@ namespace PilotUITesting.Client
             Process running = FindRunning(config);
             if (running != null && config.AttachToRunning)
             {
-                PilotApp attached = new PilotApp(config, running, false);
+                PilotApp attached = new PilotApp(config, running, false, ClientLogFile.Since(ClientLogPath(config), running.StartTime));
                 attached.WaitMainWindow();
                 if (config.RestartOnAttach)
                 {
@@ -84,10 +87,17 @@ namespace PilotUITesting.Client
                 throw new FileNotFoundException("Не найден exe клиента Pilot", config.ResolvedExePath);
             }
             PilotLog.Action("запуск клиента " + config.ResolvedExePath);
+            // журнал - с текущего конца, до запуска: в нём ищется причина, по которой клиент не вошёл в базу
+            ClientLogFile log = ClientLogFile.FromNow(ClientLogPath(config));
             Process process = Process.Start(new ProcessStartInfo(config.ResolvedExePath) { UseShellExecute = true });
-            PilotApp app = new PilotApp(config, process, true);
+            PilotApp app = new PilotApp(config, process, true, log);
             app.WaitMainWindow();
             return app;
+        }
+
+        private static string ClientLogPath(PilotUiConfig config)
+        {
+            return ClientLogFile.DefaultPath(config.ProductFolder);
         }
 
         /// <summary>Процесс клиента в текущем сеансе Windows (процессы других сеансов не подходят).</summary>
@@ -148,12 +158,17 @@ namespace PilotUITesting.Client
         /// <summary>
         /// Готовность клиента: главное окно, подключение к серверу (HelpText tabHostView «ConnectionState:Online»; прежний признак -
         /// текст «ПОДКЛЮЧЕНО» в шапке - есть только в развёрнутом окне) и вкладки загружены (ItemStatus «IsLoadingTabs:False»).
+        /// Клиент, который не войдёт в базу (нет сохранённого входа, неверный пароль, другая версия сервера, процесс завершился), -
+        /// исключение сразу, без ожидания таймаута.
         /// </summary>
         private void WaitMainWindow()
         {
             TimeSpan timeout = _config.ClientStartTimeout;
-            Wait.Until(() => MainWindow != null, timeout, "главное окно клиента Pilot (вход в базу выполняется автоматически по сохранённым данным)");
-            Wait.Until(() => IsConnected, timeout, "клиент подключён к серверу (tabHostView: ConnectionState:Online)");
+            string failure = null;
+            Wait.Until(() => (failure = StartupFailure(false)) != null || MainWindow != null, timeout, "главное окно клиента Pilot (вход в базу выполняется автоматически по сохранённым данным)");
+            ThrowStartupFailure(failure);
+            Wait.Until(() => (failure = StartupFailure(true)) != null || IsConnected, timeout, "клиент подключён к серверу (tabHostView: ConnectionState:Online)");
+            ThrowStartupFailure(failure);
             Wait.Until(() => !State.IsLoadingTabs, timeout, "вкладки клиента загружены (tabHostView: IsLoadingTabs:False)");
             WaitDiagnostics.Provider = DescribeForDiagnostics;
             string user = State.UserCaption;
@@ -162,6 +177,40 @@ namespace PilotUITesting.Client
                 throw new InvalidOperationException($"Клиент Pilot вошёл под пользователем «{user}» (подпись кнопки профиля), а в конфигурации clientUser = «{_config.ClientUser}». Тесты не запущены: они рассчитаны на другого пользователя.");
             }
             PilotLog.Action($"клиент готов: pid {Process.Id}, пользователь «{user}»");
+        }
+
+        /// <summary>Почему клиент не войдёт в базу; null - причин не видно, ждать дальше.</summary>
+        private string StartupFailure(bool mainWindowShown)
+        {
+            if (Process.HasExited)
+            {
+                return $"процесс клиента завершился (код {Process.ExitCode})";
+            }
+            string logged = _clientLog.Poll();
+            if (logged != null)
+            {
+                return ClientLogFile.Explain(logged);
+            }
+            if (mainWindowShown)
+            {
+                // NoSettings клиент ставит без обращения к серверу, когда настройки входа неполны (ConnectionViewController.CreateContext)
+                string help = MainWindow?.ChildById(TabHostId).SafeHelpText() ?? "";
+                if (help.StartsWith("ConnectionState:", StringComparison.Ordinal) && PilotStatus.Connection(help) == ClientConnection.NoSettings)
+                {
+                    return "у клиента нет сохранённого входа (ConnectionState:NoSettings, «Необходимо настроить соединение»). "
+                           + "Сохраните вход при закрытом клиенте: pilottest --login <сервер> <пользователь> <пароль> или PilotClientLogin.Save";
+                }
+            }
+            return null;
+        }
+
+        private void ThrowStartupFailure(string failure)
+        {
+            if (failure != null)
+            {
+                string readError = _clientLog.ReadError == null ? "" : $" Журнал прочитан с ошибкой: {_clientLog.ReadError}.";
+                throw new InvalidOperationException($"Клиент Pilot не вошёл в базу: {failure}. Журнал клиента: {_clientLog.Path}.{readError}");
+            }
         }
 
         /// <summary>Клиент подключён к серверу: HelpText tabHostView «ConnectionState:Online» (или текст «ПОДКЛЮЧЕНО» в развёрнутой шапке).</summary>
@@ -204,7 +253,7 @@ namespace PilotUITesting.Client
             }
         }
 
-        /// <summary>Содержимое активной вкладки (элемент класса TabView внутри контейнера вкладок). У вкладок модулей-HwndHost (реестр) - null.</summary>
+        /// <summary>Содержимое активной вкладки (элемент класса TabView внутри контейнера вкладок). У вкладок модулей-HwndHost - null.</summary>
         public AutomationElement TabContent
         {
             get

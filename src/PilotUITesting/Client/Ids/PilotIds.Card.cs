@@ -2,7 +2,7 @@
 {
     public static partial class PilotIds
     {
-        /// <summary>Окно карточки объекта (создание и редактирование; ObjectDialogView.xaml) и общие элементы карточки атрибутов (ObjectCardView, CardEditorTemplates.xaml). Поле = "AUID" + ИМЯ атрибута, подпись = "attributeCaptionContainer:" + ИМЯ атрибута. Диалоги модулей (например «Создание» реестра) - дочерние окна mainPilotView без id; ObjectCardView там без id, ClassName = ObjectCardView (разведка).</summary>
+        /// <summary>Окно карточки объекта (создание и редактирование; ObjectDialogView.xaml) и общие элементы карточки атрибутов (ObjectCardView, CardEditorTemplates.xaml). Поле = "AUID" + ИМЯ атрибута, подпись = "attributeCaptionContainer:" + ИМЯ атрибута. Диалоги модулей - дочерние окна mainPilotView без id; ObjectCardView там без id, ClassName = ObjectCardView (разведка).</summary>
         public static class Card
         {
             /// <summary>(Window) [Д] дамп прогона; Ascon.Pilot.Client.ObjectCard.ObjectDialogView.xaml:2. Окно верхнего уровня; Name = PilotTitles.Windows.CreateCard/EditCard.</summary>
@@ -155,7 +155,7 @@
             /// <summary>Пустое поле оргединиц: "AUIDEmptyOrgUnitPlaceholder;Stage:" + stageName (заголовок атрибута). [Р] разведка; [К] orgunititemtemplates.xaml:24.</summary>
             public static string OrgUnitPlaceholder(string stageName) => "AUIDEmptyOrgUnitPlaceholder;Stage:" + stageName;
 
-            /// <summary>Выбранная оргединица: "AUIDOrgUnitItem:{имя};Index:{i};Stage:{stageName}". [Д] дамп прогона (AUIDOrgUnitItem:bot2;Index:0;Stage:Исполнитель); [К] orgunititemtemplates.xaml:41.</summary>
+            /// <summary>Выбранная оргединица: "AUIDOrgUnitItem:{имя};Index:{i};Stage:{stageName}". [Д] дамп прогона (AUIDOrgUnitItem:bot;Index:0;Stage:Исполнитель); [К] orgunititemtemplates.xaml:41.</summary>
             public static string OrgUnitItem(string personName, int index, string stageName) => "AUIDOrgUnitItem:" + personName + ";Index:" + index + ";Stage:" + stageName;
 
             /// <summary>Префикс id выбранной оргединицы (для поиска по началу id). [Д] дамп прогона; [К] orgunititemtemplates.xaml:41.</summary>

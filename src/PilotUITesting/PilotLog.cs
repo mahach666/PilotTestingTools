@@ -20,7 +20,7 @@ namespace PilotUITesting
         /// <summary>Куда писать строки журнала (по умолчанию - Trace). Базовый класс ставит TestContext.Progress.</summary>
         public static Action<string> Sink { get; set; } = text => Trace.WriteLine(text);
 
-        /// <summary>Шаг сценария, как его понимает автор теста: «Открыть реестр по документу …».</summary>
+        /// <summary>Шаг сценария, как его понимает автор теста: «Открыть карточку документа …».</summary>
         public static void Step(string text)
         {
             Write("> " + text);

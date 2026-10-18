@@ -20,6 +20,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<!-- Dispatcher для ITestContext.Await -->
+		<Reference Include="WindowsBase" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Деплой тестовой сборки в Tests\ плагина-хоста: подключается к проекту потребителя автоматически -->
+		<None Include="build\PilotTestHost.Sdk.targets" Pack="true" PackagePath="build\" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- PrivateAssets: SDK Pilot не должен утекать к потребителям пакета -->
 		<PackageReference Include="Ascon.Pilot.SDK" Version="26.15.0" PrivateAssets="all" />
 	</ItemGroup>

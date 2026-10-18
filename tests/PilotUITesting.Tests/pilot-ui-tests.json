@@ -2,7 +2,6 @@
   // Контрактные тесты каталога ([Explicit], категория PilotContract): живой клиент Pilot-ICE Enterprise и стенд.
   "client": "PilotIce",
   "serverUrl": "http://localhost:5545/database",
-  "clientUser": "bot2 (bot)",
   "attachToRunning": true,
   "keepClientOpen": true,
   "dpiAware": true,

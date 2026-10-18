@@ -26,7 +26,7 @@ namespace PilotUITesting.Client
         public bool IsLoadingTabs { get; }
 
         /// <summary>
-        /// Подпись пользователя - ItemStatus кнопки профиля как есть: «отображаемое имя (должность)», например «bot2 (bot)»;
+        /// Подпись пользователя - ItemStatus кнопки профиля как есть: «отображаемое имя (должность)», например «bot (Инженер)»;
         /// пустая строка - у пользователя нет должности; null - кнопки профиля нет. Логина клиент в UI Automation не показывает.
         /// </summary>
         public string UserCaption { get; }
@@ -133,7 +133,7 @@ namespace PilotUITesting.Client
 
         /// <summary>
         /// В этом сеансе клиента открывалось представление модуля (<see cref="PilotModuleView"/>): после этого дерево UI Automation
-        /// главного окна может не обновляться до перезапуска клиента (проверено на реестре замечаний, Pilot-ICE 26.11).
+        /// главного окна может не обновляться до перезапуска клиента (проверено на вкладке модуля, Pilot-ICE 26.11).
         /// </summary>
         public bool ModuleViewOpened => _moduleViewOpened;
 

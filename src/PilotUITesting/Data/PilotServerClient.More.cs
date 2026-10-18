@@ -297,7 +297,7 @@ namespace PilotUITesting.Data
             return result;
         }
 
-        /// <summary>Время создания актуального снимка файлов (UTC) - так же вычисляет annotation_version папки замечаний модуль реестра.</summary>
+        /// <summary>Время создания актуального снимка файлов (UTC).</summary>
         public DateTime ActualSnapshotCreated(Guid id)
         {
             DObject obj = TryGetExisting(id) ?? throw new InvalidOperationException($"Объекта {id} нет на сервере.");

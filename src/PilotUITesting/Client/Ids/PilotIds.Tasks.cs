@@ -395,7 +395,7 @@
             /// <summary>Префикс id этапа. [Д] дамп прогона; [К] stagetemplates.xaml:150.</summary>
             public static readonly string StageItemPrefix = "AUIDStageItem:";
 
-            /// <summary>Исполнитель этапа: "AUIDExecutorItem:{имя};Index:{i};Stage:{индекс этапа}". [Д] дамп прогона (AUIDExecutorItem:bot2;Index:0;Stage:0); [К] stagetemplates.xaml:121.</summary>
+            /// <summary>Исполнитель этапа: "AUIDExecutorItem:{имя};Index:{i};Stage:{индекс этапа}". [Д] дамп прогона (AUIDExecutorItem:bot;Index:0;Stage:0); [К] stagetemplates.xaml:121.</summary>
             public static string ExecutorItem(string personName, int index, int stageIndex) => "AUIDExecutorItem:" + personName + ";Index:" + index + ";Stage:" + stageIndex;
 
             /// <summary>Префикс id исполнителя этапа. [Д] дамп прогона; [К] stagetemplates.xaml:121.</summary>

@@ -174,6 +174,12 @@ namespace PilotUITesting.Client
             UiChoice.SetChecked(Single(selector, null), value, input, selector + " в «" + Description + "»");
         }
 
+        /// <summary>Флажок в состояние value; verify: false - без постусловия (см. <see cref="UiActions.SetChecked(AutomationElement, bool, CheckInput, string, bool)"/>).</summary>
+        public void SetChecked(By selector, bool value, CheckInput input, bool verify)
+        {
+            UiChoice.SetChecked(Single(selector, null), value, input, selector + " в «" + Description + "»", verify);
+        }
+
         /// <summary>Подписи пунктов раскрывающегося списка (раскрыть, прочитать, свернуть).</summary>
         public IReadOnlyList<string> ComboItems(By combo)
         {

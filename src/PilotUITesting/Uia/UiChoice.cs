@@ -82,7 +82,7 @@ namespace PilotUITesting.Uia
         }
 
         /// <summary>Флажок в заданное состояние; постусловие - прочитанное состояние.</summary>
-        internal static void SetChecked(AutomationElement element, bool value, CheckInput input, string description)
+        internal static void SetChecked(AutomationElement element, bool value, CheckInput input, string description, bool verify = true)
         {
             ToggleState target = value ? ToggleState.On : ToggleState.Off;
             if (State(element, description) == target)
@@ -98,6 +98,11 @@ namespace PilotUITesting.Uia
                 ITogglePattern toggle = UiQuery.Read(() => element.Patterns.Toggle.PatternOrDefault, Wait.DefaultTimeout, "Toggle " + description);
                 UiAct.RunOnce(element, (value ? "отметить " : "снять ") + description, toggle.Toggle, "Toggle");
             }
+            if (!verify)
+            {
+                PilotLog.Action($"{description}: результат не проверяется (verify: false)");
+                return;
+            }
             Wait.Strict(() => State(element, description) == target, Wait.DefaultTimeout, $"{description} = {(value ? "вкл" : "выкл")}", () => State(element, description).ToString());
         }
 
@@ -110,7 +115,7 @@ namespace PilotUITesting.Uia
 
         /// <summary>
         /// Подпись пункта списка: текст дочернего TextBlock, если он есть, иначе Name. У пунктов с моделью-объектом Name - имя типа .NET,
-        /// а подпись только в тексте (проверено: ComboBoxEdit DevExpress в реестре, PluginUserState).
+        /// а подпись только в тексте (проверено: ComboBoxEdit DevExpress в окне модуля, PluginUserState).
         /// </summary>
         internal static string Caption(AutomationElement item)
         {
